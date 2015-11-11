@@ -1,4 +1,4 @@
-PROGRAM menupractice
+PROGRAM cbhproj
 
 !----------------------------------------------------------------------------------------
 !  Hayden Martz
@@ -16,59 +16,57 @@ PROGRAM menupractice
 
   IMPLICIT NONE
   !Declare Variables
-  INTEGER :: Selection, rc  
+  CHARACTER :: Selection*2
+  INTEGER :: rc  
 
   !Do loop, want to repetitively run different options
   DO
     CALL SYSTEM("clear") !Clear the screen
     
     !Print the different options
-    PRINT *, "Please choose one of the following options:"
-    PRINT *, 
-    PRINT *, "    1 - Initial Database Load"
-    PRINT *, "    2 - Display Auxiliary Files"
-    PRINT *, "    3 - Display a Record"
-    PRINT *, "    4 - Add a Record"
-    PRINT *, "    5 - Delete a Record"
-    PRINT *, "    6 - Modify a Record"
-    PRINT *, "    7 - List Master File"
-    PRINT *, "    8 - Exit"
-    PRINT *,
-    PRINT *, "Please enter the number corresponding to your selection."
+    WRITE (*,100) "Police Information System"
+  100 FORMAT(T30,a,//)
+    WRITE (*,200) "1-Initial Database Load"
+  200 FORMAT(T20,a)
+    WRITE (*,200) "1 - Initial Database Load"
+    WRITE (*,200) "2 - Display Auxiliary Files"
+    WRITE (*, 200) "3 - Display a Record"
+    WRITE (*,200) "4 - Add a Record"
+    WRITE (*,200) "5 - Delete a Record"
+    WRITE (*,200) "6 - Modify a Record"
+    WRITE (*,200) "7 - List Master File"
+    WRITE (*,200) "8 - Exit"
+    WRITE (*,300)"Please enter the number corresponding to your selection."
+  300 FORMAT(//,T10,a)
 
     !Read in (and test) the input
-    READ (*,*, IOSTAT = rc) Selection
-    IF (rc/=0) THEN
-      PRINT *, "That is not a valid input. Press enter to continue."
-      READ *,
-      CYCLE
-    END IF
+    READ (*,*,IOSTAT=rc) Selection
+    400 FORMAT(a2) 
 
+   CALL SYSTEM("clear")
     !Use case to run subroutine (or action) corresponding to selection
     SELECT CASE (Selection)
-      CASE(1)
+      CASE('1')
          CALL SYSTEM("clear"); PRINT *, "RUN OPTION 1 SUBROUTINE, press enter"; READ*, !Put in subroutine option later.
-      CASE(2)
+      CASE('2')
          CALL SYSTEM("clear"); PRINT *, "RUN OPTION 2 SUBROUTINE, press enter"; READ*, !Put in subroutine option later.
-      CASE(3)
+      CASE('3')
          CALL SYSTEM("clear"); PRINT *, "RUN OPTION 3 SUBROUTINE, press enter"; READ*, !Put in subroutine option later.
-      CASE(4)
+      CASE('4')
          CALL SYSTEM("clear"); PRINT *, "RUN OPTION 4 SUBROUTINE, press enter"; READ*, !Put in subroutine option later.
-      CASE(5)
+      CASE('5')
          CALL SYSTEM("clear"); PRINT *, "RUN OPTION 5 SUBROUTINE, press enter"; READ*, !Put in subroutine option later.
-      CASE(6)
+      CASE('6')
          CALL SYSTEM("clear"); PRINT *, "RUN OPTION 6 SUBROUTINE, press enter"; READ*, !Put in subroutine option later.
-      CASE(7)
+      CASE('7')
          CALL SYSTEM("clear"); PRINT *, "RUN OPTION 7 SUBROUTINE, press enter"; READ*, !Put in subroutine option later.
-      CASE(8)
+      CASE('Q','q','E','e','8')
          CALL SYSTEM("clear"); PRINT *, "Quitting..."
         EXIT
       CASE DEFAULT
         PRINT *, "Please select one of the above options. Press enter to continue."
         READ *,
-    END SELECT
-    
-    CALL SYSTEM("LS -A")
+    END SELECT 
   END DO
 
-END PROGRAM menupractice
+END PROGRAM cbhproj

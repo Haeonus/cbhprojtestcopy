@@ -36,35 +36,36 @@ PROGRAM cbhproj
     WRITE (*,200) "6 - Modify a Record"
     WRITE (*,200) "7 - List Master File"
     WRITE (*,200) "8 - Exit"
-    WRITE (*,300)"Please enter the number corresponding to your selection."
+    WRITE (*,300, ADVANCE="NO")"Please enter the number corresponding to your selection: "
   300 FORMAT(//,T10,a)
 
     !Read in (and test) the input
-    READ (*,*,IOSTAT=rc) Selection
+    READ (*,*) Selection
     400 FORMAT(a2) 
 
    CALL SYSTEM("clear")
     !Use case to run subroutine (or action) corresponding to selection
     SELECT CASE (Selection)
       CASE('1')
-         CALL SYSTEM("clear"); PRINT *, "RUN OPTION 1 SUBROUTINE, press enter"; READ*, !Put in subroutine option later.
+        CALL opt1
       CASE('2')
-         CALL SYSTEM("clear"); PRINT *, "RUN OPTION 2 SUBROUTINE, press enter"; READ*, !Put in subroutine option later.
+        CALL opt2
       CASE('3')
-         CALL SYSTEM("clear"); PRINT *, "RUN OPTION 3 SUBROUTINE, press enter"; READ*, !Put in subroutine option later.
+        CALL opt3
       CASE('4')
-         CALL SYSTEM("clear"); PRINT *, "RUN OPTION 4 SUBROUTINE, press enter"; READ*, !Put in subroutine option later.
+        CALL opt4
       CASE('5')
-         CALL SYSTEM("clear"); PRINT *, "RUN OPTION 5 SUBROUTINE, press enter"; READ*, !Put in subroutine option later.
+        CALL opt5
       CASE('6')
-         CALL SYSTEM("clear"); PRINT *, "RUN OPTION 6 SUBROUTINE, press enter"; READ*, !Put in subroutine option later.
+        CALL opt6
       CASE('7')
-         CALL SYSTEM("clear"); PRINT *, "RUN OPTION 7 SUBROUTINE, press enter"; READ*, !Put in subroutine option later.
+        CALL opt7
       CASE('Q','q','E','e','8')
          CALL SYSTEM("clear"); PRINT *, "Quitting..."
         EXIT
       CASE DEFAULT
-        PRINT *, "Please select one of the above options. Press enter to continue."
+        WRITE(*,500, ADVANCE="NO") "Please select one of the options. Press enter to continue."
+      500 FORMAT(//////,T25,a)
         READ *,
     END SELECT 
   END DO

@@ -1,4 +1,4 @@
-PROGRAM ldcolor
+PROGRAM ldvmake
 
 !----------------------------------------------------------------------------------------
 !  Hayden Martz
@@ -8,21 +8,21 @@ PROGRAM ldcolor
 !  Section 1
 !  Darren Evans-Young
 !
-!  Program: Load Color Database 
+!  Program: Load vMake Database 
 !           
-!  Input: Read in Sequential Color File [color.data] 
-!  Output: Write to Direct color database [color.db]
+!  Input: Read in Sequential vMake File [vmake.data] 
+!  Output: Write to Direct vMake database [vmake.db]
 !---------------------------------------------------------------------------------------
 
   IMPLICIT NONE
 
   ! Declare Variables
   INTEGER :: Code, Bad, Good, rc
-  CHARACTER :: Data*25
+  CHARACTER :: Data*11
 
   !Open read and write files
-  OPEN(7, FILE="color.data")
-  OPEN(8, fILE="color.db", FORM="FORMATTED", ACCESS="DIRECT", RECL=25)
+  OPEN(7, FILE="vmake.data")
+  OPEN(8, fILE="vmake.db", FORM="FORMATTED", ACCESS="DIRECT", RECL=11)
   
   !Set Good and Bad counters (for good and bad data)
   Good = 0; Bad = 0
@@ -30,18 +30,18 @@ PROGRAM ldcolor
   !Main DO loop; read through sequential file and save data to direct file
   DO
     READ (7, 100, IOSTAT=rc) Code, Data
-  100 FORMAT(I2, A25)
+  100 FORMAT(I2, A11)
     IF(rc /= 0) EXIT !Exit on end of file condition
     
     !Make sure data is within parameters. (Good data)
-    IF(code < 1 .OR. 31 < code) THEN
+    IF(code < 1 .OR. 51 < code) THEN
       Bad = Bad+1
       CYCLE
     END IF
 
     !Write good data to direct access file
     WRITE (8, 200, REC=(Code+1)) Data
-  200 FORMAT(A25)
+  200 FORMAT(A11)
 
     !Increment good data counter
     Good = Good +1 
@@ -58,4 +58,4 @@ PROGRAM ldcolor
   WRITE(*,400) Good,Bad
 400 FORMAT("Good: ",I2,T20,"Bad: ",I2)
 
-END PROGRAM ldcolor
+END PROGRAM ldvmake

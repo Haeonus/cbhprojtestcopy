@@ -26,7 +26,6 @@ PROGRAM cbhproj
     !Print the different options
     WRITE (*,100) "Police Information System"
   100 FORMAT(T30,a,//)
-    WRITE (*,200) "1-Initial Database Load"
   200 FORMAT(T20,a)
     WRITE (*,200) "1 - Initial Database Load"
     WRITE (*,200) "2 - Display Auxiliary Files"

@@ -1,16 +1,19 @@
 SUBROUTINE opt1
   CALL SYSTEM("clear")
-  PRINT *, "RUN OPTION 1 SUBROUTINE"
+  WRITE (*,100) "Police Information System","Initial Data Load"    
+100 FORMAT(T30,a,/,T34,a)
 
-  CALL ldcolor
-  CALL ldvmake
-  CALL ldvtype
-  CALL ldcounty
-  CALL ldstate
-  CALL ldpolice1
-  CALL ldpolice2
+  WRITE(*,200,ADVANCE="NO") "Color Data Loaded: "; CALL ldcolor
+200 FORMAT(/,T18,a)
+  WRITE(*,300,ADVANCE="NO") "Vehicle Make Data Loaded: "; CALL ldvmake
+300 FORMAT(T18,a)
+  WRITE(*,300,ADVANCE="NO") "Vehicle Type Data Loaded: "; CALL ldvtype
+  WRITE(*,300,ADVANCE="NO") "County Data Loaded: "; CALL ldcounty
+  WRITE(*,300,ADVANCE="NO") "State Data Loaded: "; CALL ldstate
+  WRITE(*,300,ADVANCE="NO") "Police 1 Data Loaded: "; CALL ldpolice1
+  WRITE(*,300,ADVANCE="NO") "Police 2 Data Loaded: "; CALL ldpolice2
 
-  WRITE (*,'(a)', ADVANCE='NO') "Press Enter to Continue: "
+  WRITE (*,"(/,T12,a)", ADVANCE="NO") "Press Enter to Continue: "
   READ*, !Put in subroutine option later.
 
 END SUBROUTINE opt1

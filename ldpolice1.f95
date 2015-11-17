@@ -90,6 +90,6 @@ SUBROUTINE ldpolice1
 
   !Print out debug message, number of good/bad data entries
   WRITE(*,500) Good,Bad
-500 FORMAT("Good: ",I2,T20,"Bad: ",I2)
+500 FORMAT(T12,"Good: ",I2,"  Bad: ",I2)
 
 END SUBROUTINE ldpolice1

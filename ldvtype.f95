@@ -56,6 +56,6 @@ SUBROUTINE ldvtype
 
   !Print out debug message, number of good/bad data entries
   WRITE(*,400) Good,Bad
-400 FORMAT("Good: ",I2,T20,"Bad: ",I2)
+400 FORMAT(T8,"Good: ",I2,"  Bad: ",I2)
 
 END SUBROUTINE ldvtype

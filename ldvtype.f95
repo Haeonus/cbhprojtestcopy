@@ -1,4 +1,4 @@
-PROGRAM ldvtype
+SUBROUTINE ldvtype
 
 !----------------------------------------------------------------------------------------
 !  Hayden Martz
@@ -58,4 +58,4 @@ PROGRAM ldvtype
   WRITE(*,400) Good,Bad
 400 FORMAT("Good: ",I2,T20,"Bad: ",I2)
 
-END PROGRAM ldvtype
+END SUBROUTINE ldvtype

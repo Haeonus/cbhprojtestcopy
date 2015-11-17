@@ -1,4 +1,4 @@
-PROGRAM ldstate
+SUBROUTINE ldstate
 
 !----------------------------------------------------------------------------------------
 !  Hayden Martz
@@ -58,4 +58,4 @@ PROGRAM ldstate
   WRITE(*,400) Good,Bad
 400 FORMAT("Good: ",I2,T20,"Bad: ",I2)
 
-END PROGRAM ldstate
+END SUBROUTINE ldstate

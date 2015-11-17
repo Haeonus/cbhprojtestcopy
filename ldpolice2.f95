@@ -1,4 +1,4 @@
-PROGRAM ldpolice2
+SUBROUTINE ldpolice2
 
 !----------------------------------------------------------------------------------------
 !  Hayden Martz
@@ -90,6 +90,6 @@ PROGRAM ldpolice2
 
   !Print out debug message, number of good/bad data entries
   WRITE(*,500) Good,Bad
-500 FORMAT("Good: ",I10,T20,"Bad: ",I2)
+500 FORMAT("Good: ",I2,T20,"Bad: ",I2)
 
-END PROGRAM ldpolice2
+END SUBROUTINE ldpolice2

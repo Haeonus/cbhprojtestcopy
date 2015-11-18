@@ -22,7 +22,7 @@ SUBROUTINE ldvmake
 
   !Open read and write files
   OPEN(7, FILE="vmake.data")
-  OPEN(8, fILE="vmake.db", FORM="FORMATTED", ACCESS="DIRECT", RECL=11)
+  OPEN(8, FILE="vmake.db", FORM="FORMATTED", ACCESS="DIRECT", RECL=11)
   
   !Set Good and Bad counters (for good and bad data)
   Good = 0; Bad = 0

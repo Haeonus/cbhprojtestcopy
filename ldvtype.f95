@@ -22,7 +22,7 @@ SUBROUTINE ldvtype
 
   !Open read and write files
   OPEN(7, FILE="vtype.data")
-  OPEN(8, fILE="vtype.db", FORM="FORMATTED", ACCESS="DIRECT", RECL=15)
+  OPEN(8, FILE="vtype.db", FORM="FORMATTED", ACCESS="DIRECT", RECL=15)
   
   !Set Good and Bad counters (for good and bad data)
   Good = 0; Bad = 0

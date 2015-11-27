@@ -67,7 +67,8 @@ SUBROUTINE opt2
       CASE('Q','q','E','e','6')
         EXIT
       CASE DEFAULT
-        WRITE(*,500, ADVANCE="NO") "Please select one of the options. Press enter to continue."
+        CALL SYSTEM("clear")
+        WRITE(*,500, ADVANCE="NO") "Please select one of the options."
       500 FORMAT(//////,T25,a)
     END SELECT 
     WRITE(*,300, ADVANCE = "NO" ) "Please press enter to continue: "

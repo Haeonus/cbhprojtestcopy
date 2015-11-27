@@ -1,4 +1,4 @@
-PROGRAM ldmaster
+SUBROUTINE ldmaster
 
 !----------------------------------------------------------------------------------------
 !  Hayden Martz
@@ -52,4 +52,4 @@ PROGRAM ldmaster
 
   Close(7); Close(8); Close(9)
 
-END PROGRAM ldmaster
+END SUBROUTINE ldmaster

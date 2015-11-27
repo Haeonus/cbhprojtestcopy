@@ -10,8 +10,7 @@ SUBROUTINE opt1
   WRITE(*,300,ADVANCE="NO") "Vehicle Type Data Loaded: "; CALL ldvtype
   WRITE(*,300,ADVANCE="NO") "County Data Loaded: "; CALL ldcounty
   WRITE(*,300,ADVANCE="NO") "State Data Loaded: "; CALL ldstate
-  WRITE(*,300,ADVANCE="NO") "Police 1 Data Loaded: "; CALL ldpolice1
-  WRITE(*,300,ADVANCE="NO") "Police 2 Data Loaded: "; CALL ldpolice2
+  CALL ldmaster
 
   WRITE (*,"(/,T12,a)", ADVANCE="NO") "Press Enter to Continue: "
   READ*, !Put in subroutine option later.

@@ -7,7 +7,7 @@ CFLAGS =
 OBJ = cbhproj.o opt1.o opt2.o opt3.o opt4.o opt5.o opt6.o opt7.o ldcolor.o ldcounty.o \
        ldmaster.o ldstate.o ldvmake.o ldvtype.o displaycolor.o displayvtype.o \
        displayvmake.o displaycounty.o displaystate.o bubblesort.o checkssn.o findssn.o\
-       searchssn.o 
+       searchssn.o displayinfo.o
 
 cbhproj: $(OBJ)
 	$(CC) $(CFLAGS) -o cbhproj $(OBJ)
@@ -57,6 +57,8 @@ findssn.o: findssn.f95
 	$(CC) $(CFLAGS) -c findssn.f95
 searchssn.o: searchssn.f95
 	$(CC) $(CFLAGS) -c searchssn.f95
+displayinfo.o: displayinfo.f95
+	$(CC) $(CFLAGS) -c displayinfo.f95
 
 clean:
 	rm cbhproj *.o *.db core

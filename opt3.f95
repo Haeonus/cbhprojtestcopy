@@ -20,6 +20,11 @@ SUBROUTINE opt3
   INTEGER :: ErrorCode, ErrorCode2, TestSSN, I, RecNumber
   LOGICAL :: InvalidSSN
 
+  OPEN(7, FILE = "state.db", FORM = "FORMATTED", ACCESS = "DIRECT", RECL = 18)
+  OPEN(8, FILE = "county.db", FORM = "FORMATTED", ACCESS = "DIRECT", RECL = 12)
+  OPEN(9, FILE = "vtype.db", FORM = "FORMATTED", ACCESS = "DIRECT", RECL = 15)
+  OPEN(10, FILE = "vmake.db", FORM = "FORMATTED", ACCESS = "DIRECT", RECL = 11)
+  OPEN(11, FILE = "color.db", FORM = "FORMATTED", ACCESS = "DIRECT", RECL = 25)
   OPEN(12, FILE = "master.db", FORM = "FORMATTED", ACCESS = "DIRECT", RECL = 105)
 
   DO
@@ -53,10 +58,14 @@ SUBROUTINE opt3
       CYCLE
     END IF
     READ(12, "(A105)", REC = RecNumber) Data
-PRINT*, Data
+
+    CALL displayinfo(Data)
+
     WRITE(*, "(/,T30,A)", ADVANCE = "NO") "Press enter to return: "
     READ*,
 
   END DO
+
+  CLOSE(7); CLOSE(8); CLOSE(9); CLOSE(10); CLOSE(11);CLOSE(12)
 
 END SUBROUTINE opt3

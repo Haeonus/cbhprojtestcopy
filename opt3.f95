@@ -16,32 +16,46 @@ SUBROUTINE opt3
 
 
   IMPLICIT NONE
-  CHARACTER :: SSNIn*12, SSNOut*9
-  INTEGER :: ErrorCode, ErrorCode2, TestSSN, I
+  CHARACTER :: SSNIn*12, SSNOut*9, FinalSSN*11, Data*105 !Data is temprorary
+  INTEGER :: ErrorCode, ErrorCode2, TestSSN, I, RecNumber
   LOGICAL :: InvalidSSN
+
+  OPEN(12, FILE = "master.db", FORM = "FORMATTED", ACCESS = "DIRECT", RECL = 105)
 
   DO
     CALL SYSTEM("clear")
-
-
-    WRITE(*,100, ADVANCE = "NO") "Please enter the Social Security Number of your target: "
-  100 FORMAT(///,T25,A)i
+    WRITE (*,100) "Police Information System"
+  100 FORMAT(T30,a)
+    WRITE (*,150) "Search SSN"
+  150 FORMAT(T35,a,//)
+ 
+    WRITE(*,200, ADVANCE = "NO") "Please enter the Social Security Number of your target: "
+  200 FORMAT(/,T15,A)
     READ(*, "(A12)", IOSTAT = ErrorCode) SSNIn
-    SELECT CASE(SSNIn(1:1)
+    SELECT CASE(SSNIn(1:1))
       CASE("Q", "q", "E", "e")
         EXIT
       CASE DEFAULT
         !Check the value of the entered SSN to make sure it is valid.
-        CALL checkssn(SSNIn, InvalidSSN, ErrorCode)
-       
+        CALL checkssn(SSNIn, InvalidSSN, ErrorCode, SSNOut)
         IF(InvalidSSN) THEN
-          WRITE(*, "(//,T30, A)", ADVANCE = "NO") "Invalid code entered. Press enter to retry: "
+          WRITE(*, "(//,T20, A)", ADVANCE = "NO") "Invalid SSN  entered. Press enter to return: "
           READ *,
           CYCLE
         END IF
-    END SELECT CASE
-    !Search for SSN number in master.db and return location of the record.
+    END SELECT
 
+    !Search for SSN number in master.db and return location of the record. 0 means DNE    
+    CALL findssn(SSNOut, RecNumber)
+    IF(RecNumber == 0) THEN
+      WRITE(*, "(//,T20, A)", ADVANCE = "NO") "SSN not found in database. Press enter to return: "
+      READ *,
+      CYCLE
+    END IF
+    READ(12, "(A105)", REC = RecNumber) Data
+PRINT*, Data
+    WRITE(*, "(/,T30,A)", ADVANCE = "NO") "Press enter to return: "
+    READ*,
 
   END DO
 

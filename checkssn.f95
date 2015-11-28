@@ -1,10 +1,10 @@
-SUBROUTINE checkssn(SSNIn, InvalidSSN, ErrorCode)
+SUBROUTINE checkssn(SSNIn, InvalidSSN, ErrorCode, SSNOut)
 
 !Checks to make sure SSN passed into it is a valid SSN, returns INVALID logical value as true if invalid.
 
   IMPLICIT NONE
   CHARACTER, INTENT(IN) :: SSNIn*12
-  CHARACTER ::SSNOut*9
+  CHARACTER, INTENT(OUT) ::SSNOut*9
   INTEGER :: ErrorCode2, TestSSN, I, CharValue
   INTEGER, INTENT(IN) :: ErrorCode
   LOGICAL, INTENT(OUT) :: InvalidSSN

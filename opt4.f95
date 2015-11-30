@@ -36,7 +36,7 @@ SUBROUTINE opt4
     CALL SYSTEM("clear")
     WRITE (*,100) "Police Information System"
   100 FORMAT(T30,a)
-    WRITE (*,150) "Add record"
+    WRITE (*,150) "Add Record"
   150 FORMAT(T35,a,//)
  
     WRITE(*,200, ADVANCE = "NO") "Please enter the new Social Security Number: "
@@ -58,7 +58,7 @@ SUBROUTINE opt4
     !Search for SSN number in master.db and return location of the record. 0 means DNE    
     CALL findssn(SSNOut, RecNumber)
     IF(RecNumber /= 0) THEN
-      WRITE(*, "(//,T20, A)", ADVANCE = "NO") "SSN alread registered in database. Press enter to return: "
+      WRITE(*, "(//,T20, A)", ADVANCE = "NO") "SSN already registered in database. Press enter to return: "
       READ *,
       CYCLE
     END IF

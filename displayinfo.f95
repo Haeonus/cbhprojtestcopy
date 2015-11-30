@@ -15,7 +15,7 @@ SUBROUTINE displayinfo(Data)
   Nombre = Data(10:29)
   Street = Data(30:59)
   City = Data(60:78)
-  ZipCode(1:5) = Data(79:83); ZipCode(6:6) = "-"; ZipCode(6:10) = Data(84:87)
+  ZipCode(1:5) = Data(79:83); ZipCode(6:6) = "-"; ZipCode(7:10) = Data(84:87)
   StateCode = Data(88:89)
   CountyCode = Data(90:91)
   VtypeCode = Data(92:92)
@@ -25,7 +25,7 @@ SUBROUTINE displayinfo(Data)
   TagNumber = Data(99:105)
 
   READ(Data(88:), "(I2, I2, I1, I2, I2, I2)") SC, CC, VtC, VTCC, VmC, VBCC
-  VTCC = VTCC+1; VBCC = VBCC+1
+  VTCC = VTCC+1; VBCC = VBCC+1; SC = SC + 1; CC = CC + 2; VtC = VtC + 1; VmC = VmC + 1
 
   READ(7, "(A18)", REC = SC) State
   READ(8, "(A12)", REC = CC) County
@@ -35,7 +35,7 @@ SUBROUTINE displayinfo(Data)
 
   WRITE (*,100) "Police Information System"
 100 FORMAT(T30,a)
-  WRITE (*,150) "Searched SSN: ", SSN
+  WRITE (*,150) "The SSN On Record: ", SSN
 150 FORMAT(T30,a,a11,//)
   WRITE(*, 200) "NAME: ", Nombre 
 200 FORMAT(T20,a,T45, a)
@@ -43,13 +43,14 @@ SUBROUTINE displayinfo(Data)
   WRITE(*, 300) "ADDRESS: ", Street
 300 FORMAT(T20, a, T45, a30)
   WRITE(*,"(T45,a29)") City
-  WRITE(*, 350) State, ZipCode
-350 FORMAT(T45, a18, " ", a10)
-  WRITE(*, 250) "COUNTY: ", County
+  WRITE(*, 350) State(1:2), ZipCode
+350 FORMAT(T45, a2, ", ", a10)
+  WRITE(*, 200) "COUNTY: ", County
+  WRITE(*, 250) "STATE: ", State(3:)
 250 FORMAT(T20,a,T45, a, /)
   WRITE(*, 200) "TAG NUMBER: ", TagNumber
-  WRITE(*, 400) Vtype, VColorTop
-400 FORMAT(T20, "VEHICLE TYPE: ", a15, "    VEHICLE COLOR: TOP    - ", a25)
-  WRITE(*,450)  Vmake, VColorbottom
-450 FORMAT(T20, "VEHICLE MAKE: ", a11, T68, "BOTTOM - ", a25)
+  WRITE(*, 400) Vtype, VColorTop(1:3), VColorTop(4:)
+400 FORMAT(/, T20, "VEHICLE TYPE: ", a15, "    VEHICLE COLOR: TOP    - (", a3, ") ", a22)
+  WRITE(*,450)  Vmake, VColorbottom(1:3), VColorBottom(4:)
+450 FORMAT(T20, "VEHICLE MAKE: ", a11, T68, "BOTTOM - (", a3, ") "a22)
 END SUBROUTINE displayinfo

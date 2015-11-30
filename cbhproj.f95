@@ -59,7 +59,7 @@ PROGRAM cbhproj
         CALL opt6
       CASE('7')
         CALL opt7
-      CASE('Q','q','E','e','8')
+      CASE('Q','q','E','e','Qu', 'qu', 'Ex', 'ex', '8')
          CALL SYSTEM("clear"); PRINT *, "Quitting..."
         EXIT
       CASE DEFAULT

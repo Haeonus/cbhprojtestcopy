@@ -64,7 +64,7 @@ SUBROUTINE opt2
       CASE('5')
         WRITE (*,120) "Vehicle Colors"
         CALL displaycolor
-      CASE('Q','q','E','e','6')
+      CASE('Q','q','E','e','6', 'Qu', 'qu', 'Ex', 'ex')
         EXIT
       CASE DEFAULT
         CALL SYSTEM("clear")

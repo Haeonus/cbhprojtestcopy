@@ -7,9 +7,13 @@ SUBROUTINE searchcolor(Data, RecNumber)
   CHARACTER :: Test*25
   INTEGER, INTENT(OUT) :: RecNumber
   INTEGER :: I, Lengthdb
+  LOGICAL :: IntegerIn
 
   READ(11, "(I2)", REC = 1) Lengthdb
-  IF(((IACHAR(Data(1:1))>=48 .AND. IACHAR(Data(2:2))<57) .AND. Data(3:) == ""  )) THEN
+   IntegerIn = ((IACHAR(Data(1:1))>=48.AND.IACHAR(Data(1:1))<=57).AND.(IACHAR(Data(2:2))<=57).AND.IACHAR(Data(2:2))>=47&
+                 .OR.IACHAR(Data(2:2)) == 32)
+
+   IF((IntegerIn.AND. Data(3:) == ""  )) THEN
     READ(Data, "(I2)") RecNumber
     IF(RecNumber<1 .OR. RecNumber>Lengthdb) RecNumber = -1
     RETURN

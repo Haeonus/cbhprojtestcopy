@@ -9,7 +9,7 @@ SUBROUTINE checkzip(ZipIn, InvalidZip, ErrorCode, ZipOut)
   INTEGER, INTENT(IN) :: ErrorCode
   LOGICAL, INTENT(OUT) :: InvalidZip
 
-    invalidzip = .FALSE.
+    InvalidZip = .FALSE.
     IF(ErrorCode /= 0 .OR. ZipIn(11:11) /=" ") THEN
       InvalidZip = .TRUE.
       RETURN
@@ -20,7 +20,7 @@ SUBROUTINE checkzip(ZipIn, InvalidZip, ErrorCode, ZipOut)
     ELSE
       ZipOut = ZipIn(1:9)
     END IF
- 
+
     DO I=1, 9
       CharValue = IACHAR(ZipOut(I:I))
       IF(CharValue<48 .OR. CharValue>57) THEN

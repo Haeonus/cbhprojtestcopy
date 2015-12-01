@@ -8,7 +8,8 @@ OBJ = cbhproj.o opt1.o opt2.o opt3.o opt4.o opt5.o opt6.o opt7.o ldcolor.o ldcou
        ldmaster.o ldstate.o ldvmake.o ldvtype.o displaycolor.o displayvtype.o \
        displayvmake.o displaycounty.o displaystate.o bubblesort.o checkssn.o findssn.o\
        searchssn.o displayinfo.o checkzip.o searchstate.o searchcounty.o searchvtype.o\
-       searchcolor.o searchvmake.o
+       searchcolor.o searchvmake.o getzipcode.o getstatecode.o getcountycode.o getvtypecode.o\
+       getvmakecode.o getcolorcodes.o gettagnumber.o
 
 cbhproj: $(OBJ)
 	$(CC) $(CFLAGS) -o cbhproj $(OBJ)
@@ -72,6 +73,20 @@ searchcolor.o: searchcolor.f95
 	$(CC) $(CFLAGS) -c searchcolor.f95
 searchvmake.o: searchvmake.f95
 	$(CC) $(CFLAGS) -c searchvmake.f95
+getzipcode.o: getzipcode.f95
+	$(CC) $(CFLAGS) -c getzipcode.f95
+getstatecode.o: getstatecode.f95
+	$(CC) $(CFLAGS) -c getstatecode.f95
+getcountycode.o: getcountycode.f95
+	$(CC) $(CFLAGS) -c getcountycode.f95
+getvtypecode.o: getvtypecode.f95
+	$(CC) $(CFLAGS) -c getvtypecode.f95
+getvmakecode.o: getvmakecode.f95
+	$(CC) $(CFLAGS) -c getvmakecode.f95
+getcolorcodes.o: getcolorcodes.f95
+	$(CC) $(CFLAGS) -c getcolorcodes.f95
+gettagnumber.o: gettagnumber.f95
+	$(CC) $(CFLAGS) -c gettagnumber.f95
 
 clean:
 	rm cbhproj *.o *.db core

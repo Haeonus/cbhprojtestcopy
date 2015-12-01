@@ -13,13 +13,13 @@ RECURSIVE SUBROUTINE searchssn(RecValue, MinRecord, MaxRecord, RecNumber)
   READ(12, "(A9)", REC = Middle) TestRecValue
   READ(12, "(A9)", REC = MaxRecord) TestLastRecValue
 
-  IF(MinRecord == MaxRecord) THEN
-    RETURN
-  ELSE IF(RecValue == TestRecValue) THEN
+  IF(RecValue == TestRecValue) THEN
     RecNumber = Middle
     RETURN
   ELSE IF(RecValue == TestLastRecValue) THEN
     RecNumber = MaxRecord
+    RETURN
+  ELSE IF((MaxRecord - MinRecord)<=1) THEN
     RETURN
   ELSE IF(RecValue < TestRecValue) THEN
     CALL searchssn(RecValue, MinRecord, Middle, RecNumber)

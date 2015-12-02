@@ -12,6 +12,10 @@ SUBROUTINE getcountycode(CountyCode)
          WRITE(*, "(T20, a)", ADVANCE = "NO") "Non-Existant County. Press enter to retry; "; READ*,
          CYCLE
       END IF
+      IF(CountyCode>9) THEN
+         WRITE(*, "(T20, a)", ADVANCE = "NO") "Database currently does not support your entry, or codes above 9."
+         WRITE(*, "(/, T38, a)", ADVANCE = "NO") "Press enter to continue"
+      END IF
       EXIT
    END DO
 

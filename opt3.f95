@@ -34,7 +34,7 @@ SUBROUTINE opt3
       WRITE (*,150) "Search SSN"
 150     FORMAT(T35,a,//)
  
-      WRITE(*,200, ADVANCE = "NO") "Please enter the Social Security Number of your target: "
+      WRITE(*,200, ADVANCE = "NO") "Please enter the Social Security Number of your target or type 'Q' to exit: "
 200     FORMAT(/,T15,A)
       READ(*, "(A12)", IOSTAT = ErrorCode) SSNIn
       SELECT CASE(SSNIn(1:1))

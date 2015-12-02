@@ -84,24 +84,31 @@ SUBROUTINE opt4
   
       CALL getstatecode(NumRecord)
       WRITE(NewEntry(88:89), "(i2.2)") NumRecord
+PRINT*, "state", NumRecord
 
       CALL getcountycode(NumRecord)
       WRITE(NewEntry(90:91), "(i2.2)") NumRecord
+PRINT*, "county", NumRecord
 
       CALL getvtypecode(NumRecord)
       WRITE(NewEntry(92:92), "(i1.1)") NumRecord
+PRINT*, "vtype", NumRecord
 
       CALL getvmakecode(NumRecord)
       WRITE(NewEntry(95:96), "(i2.2)") NumRecord
+PRINT*, "vmake", NumRecord
 
       CALL getcolorcodes(NumRecord)
       WRITE(NewEntry(93:94), "(i2.2)") NumRecord
+PRINT*, "color", NumRecord
 
       CALL getcolorcodes(NumRecord)
       WRITE(NewEntry(97:98), "(i2.2)") NumRecord
-      
+ PRINT*, "colorbottom", NumRecord
+     
       CALL gettagnumber(TagNumber)
       NewEntry(99:105) = TagNumber
+PRINT*, "state", NumRecord
 
       !After reading and assembling all information,  write it to end of master.db, Increment length then bubblesort.
       READ(12, "(I2)", REC = 1) RecNumber

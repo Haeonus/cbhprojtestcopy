@@ -10,7 +10,7 @@ SUBROUTINE displayinfo(Data)
    INTEGER :: SC, CC, VtC, VmC, VTCC, VBCC
 
    CALL SYSTEM("clear")
-PRINT*, Data
+
    SSN(1:3) = Data(1:3); SSN(4:4) = "-"; SSN(5:6) = DATA(4:5); SSN(7:7) = "-"; SSN(8:11) = Data(6:9)
    Nombre = Data(10:29)
    Street = Data(30:59)

@@ -39,7 +39,8 @@ SUBROUTINE opt6
 100     FORMAT(T30,a)
       WRITE (*,150) "Modify Record"
 150     FORMAT(T35,a,//)
-      WRITE(*,250, ADVANCE = "NO") "Please enter the new Social Security Number of the record you wish to modify: "
+      WRITE(*,250, ADVANCE = "NO") "Please enter the new Social Security Number of the record you wish to modify or &
+                                   & type 'Q' to exit: "
 250     FORMAT(/,T15,A)
 
       IF(SSNIn =="") READ(*, "(A12)", IOSTAT = ErrorCode) SSNIn !Reads in SSN unless a change was made.

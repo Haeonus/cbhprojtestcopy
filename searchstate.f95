@@ -3,8 +3,8 @@ SUBROUTINE searchstate(Data, RecNumber)
 !Search through state.db for the numbervalue of state.
 
    IMPLICIT NONE
-   CHARACTER, INTENT(IN) :: Data*18
-   CHARACTER :: Test*18
+   CHARACTER, INTENT(IN) :: Data*24
+   CHARACTER :: Test*24
    INTEGER, INTENT(OUT) :: RecNumber
    INTEGER :: I, Lengthdb
    LOGICAL :: IntegerIn
@@ -20,7 +20,7 @@ SUBROUTINE searchstate(Data, RecNumber)
 
 
    DO I=1, Lengthdb
-      READ(7, "(a18)", REC = I+1) Test
+      READ(7, "(a24)", REC = I+1) Test
       IF(Test(1:2) == Data(1:2) .OR. Test(3:LEN(Data)) == Data) THEN
          RecNumber = I
          RETURN

@@ -31,15 +31,14 @@ SUBROUTINE displaycolor
     List(i) = " "
   END DO
 
-  !Open File and get length
-  OPEN(7, FILE="color.db", FORM="FORMATTED", ACCESS="DIRECT", RECL=25)
-  READ(7, "(I2)",REC = 1) NumRecords  
+  !File open, get length
+  READ(11, "(I2)",REC = 1) NumRecords  
 
   DO I=1, NumRecords
     ColPos = (Column-1)*ColWidth
     
     !Read Data from File
-    READ (7, "(A25)", REC = I+1) Data
+    READ (11, "(A25)", REC = I+1) Data
 
     !Write Data to List Array Varialbe.
     Code = I
@@ -60,7 +59,5 @@ SUBROUTINE displaycolor
   DO I=1, NumRows
     WRITE(*,"(T20,A100)") List(I)
   END DO
-
-  CLOSE(7)
 
 END SUBROUTINE displaycolor

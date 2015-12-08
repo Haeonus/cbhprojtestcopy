@@ -18,11 +18,11 @@ SUBROUTINE ldstate
 
   ! Declare Variables
   INTEGER :: Code, Bad, Good, rc
-  CHARACTER :: Data*18
+  CHARACTER :: Data*24
 
   !Open read and write files
   OPEN(7, FILE="state.data")
-  OPEN(8, FILE="state.db", FORM="FORMATTED", ACCESS="DIRECT", RECL=18)
+  OPEN(8, FILE="state.db", FORM="FORMATTED", ACCESS="DIRECT", RECL=24)
   
   !Set Good and Bad counters (for good and bad data)
   Good = 0; Bad = 0
@@ -30,7 +30,7 @@ SUBROUTINE ldstate
   !Main DO loop; read through sequential file and save data to direct file
   DO
     READ (7, 100, IOSTAT=rc) Code, Data
-  100 FORMAT(I2, A18)
+  100 FORMAT(I2, A24)
     IF(rc /= 0) EXIT !Exit on end of file condition
     
     !Make sure data is within parameters. (Good data)
@@ -41,7 +41,7 @@ SUBROUTINE ldstate
 
     !Write good data to direct access file
     WRITE (8, 200, REC=(Code+1)) Data
-  200 FORMAT(A18)
+  200 FORMAT(A24)
 
     !Increment good data counter
     Good = Good +1 

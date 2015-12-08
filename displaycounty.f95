@@ -30,14 +30,13 @@ SUBROUTINE displaycounty
   DO I=1, NumRows
     List(i) = " "
   END DO
-  !Open File and get length
-  OPEN(7, FILE="county.db", FORM="FORMATTED", ACCESS="DIRECT", RECL=12)
-  READ(7, "(I2)",REC = 1) NumRecords  
+  !File open get length
+  READ(8, "(I2)",REC = 1) NumRecords  
 
   DO I=1, NumRecords
     ColPos = (Column-1)*ColWidth
     !Read Data from File
-    READ (7, "(A12)", REC = I+1) Data
+    READ (8, "(A12)", REC = I+1) Data
 
     !Write Data to List Array Varialbe.
     Code = I-1
@@ -57,7 +56,5 @@ SUBROUTINE displaycounty
   DO I=1, NumRows
     WRITE(*,"(T20,A100)") List(I)
   END DO
-
-  CLOSE(7)
 
 END SUBROUTINE displaycounty

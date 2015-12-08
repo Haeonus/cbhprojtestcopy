@@ -19,7 +19,7 @@ SUBROUTINE opt5
    LOGICAL :: InvalidSSN
 
 
-   OPEN(7, FILE = "state.db", FORM = "FORMATTED", ACCESS = "DIRECT", RECL = 18)
+   OPEN(7, FILE = "state.db", FORM = "FORMATTED", ACCESS = "DIRECT", RECL = 24)
    OPEN(8, FILE = "county.db", FORM = "FORMATTED", ACCESS = "DIRECT", RECL = 12)
    OPEN(9, FILE = "vtype.db", FORM = "FORMATTED", ACCESS = "DIRECT", RECL = 15)
    OPEN(10, FILE = "vmake.db", FORM = "FORMATTED", ACCESS = "DIRECT", RECL = 11)
@@ -71,6 +71,7 @@ SUBROUTINE opt5
             READ(12, "(i2)", REC = 1) NumRecord
             CALL bubblesort
             WRITE(12, "(i2)", REC = 1) NumRecord - 1
+            WRITE(*, *) "Record ", DelRecord(1:3), "-", DelRecord(4:5), "-", DelRecord(6:11), " Deleted."
          CASE DEFAULT
             CYCLE
       END SELECT

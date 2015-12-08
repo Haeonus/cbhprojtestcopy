@@ -31,15 +31,14 @@ SUBROUTINE displayvmake
     List(i) = " "
   END DO
 
-  !Open File and get length
-  OPEN(7, FILE="vmake.db", FORM="FORMATTED", ACCESS="DIRECT", RECL=11)
-  READ(7, "(I2)",REC = 1) NumRecords  
+  !File open, get length
+  READ(10, "(I2)",REC = 1) NumRecords  
 
   DO I=1, NumRecords
     ColPos = (Column-1)*ColWidth
     
     !Read Data from File
-    READ (7, "(A11)", REC = I+1) Data
+    READ (10, "(A11)", REC = I+1) Data
 
     !Write Data to List Array Varialbe.
     Code = I
@@ -59,7 +58,5 @@ SUBROUTINE displayvmake
   DO I=1, NumRows
     WRITE(*,"(T20,A100)") List(I)
   END DO
-
-  CLOSE(7)
 
 END SUBROUTINE displayvmake

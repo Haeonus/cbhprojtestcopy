@@ -27,6 +27,7 @@ SUBROUTINE displayinfo(Data)
    READ(Data(88:), "(I2, I2, I1, I2, I2, I2)") SC, CC, VtC, VTCC, VmC, VBCC
    VTCC = VTCC+1; VBCC = VBCC+1; SC = SC + 1; CC = CC + 2; VtC = VtC + 1; VmC = VmC + 1
 
+   !Get the content using the codes from the various database files.
    READ(7, "(A18)", REC = SC) State
    READ(8, "(A12)", REC = CC) County
    READ(9, "(A15)", REC = VtC) Vtype
@@ -35,6 +36,7 @@ SUBROUTINE displayinfo(Data)
 
    WRITE (*,100) "Police Information System"
 100  FORMAT(T30,a)
+
    WRITE (*,150) "The SSN On Record: ", SSN
 150  FORMAT(T30,a,a11,//)
    WRITE(*, 200) "NAME: ", Nombre 
@@ -45,13 +47,14 @@ SUBROUTINE displayinfo(Data)
    WRITE(*,"(T45,a19)") City
    WRITE(*, 350) State(1:2), ZipCode
 350  FORMAT(T45, a2, ", ", a10)
-   WRITE(*, 200) "COUNTY: ", County
-   WRITE(*, 250) "STATE: ", State(3:)
-250  FORMAT(T20,a,T45, a, /)
+   WRITE(*, 220) "COUNTY: ", "[",CountyCode, "] ", County
+220  FORMAT(T20,a, T45,a,  a2, a, a)
+   WRITE(*, 250) "STATE: ", "[",StateCode, "] ", State(3:)
+250  FORMAT(T20,a, T45,a ,a2,a, a, /)
    WRITE(*, 200) "TAG NUMBER: ", TagNumber
-   WRITE(*, 400) Vtype, VColorTop(1:3), VColorTop(4:)
-400  FORMAT(/, T20, "VEHICLE TYPE: ", a15, "    VEHICLE COLOR: TOP    - (", a3, ") ", a22)
-   WRITE(*,450)  Vmake, VColorbottom(1:3), VColorBottom(4:)
-450  FORMAT(T20, "VEHICLE MAKE: ", a11, T68, "BOTTOM - (", a3, ") "a22)
+   WRITE(*, 400) VtypeCode, Vtype,VColorTopCode, VColorTop(1:3), VColorTop(4:)
+400  FORMAT(/, T20, "VEHICLE TYPE: [0",a1, "] ", a15, "    VEHICLE COLOR: TOP    - [",a2"]  (", a3, ") ", a22)
+   WRITE(*,450)  Vmakecode,Vmake,VColorBottomCode, VColorBottom(1:3), VColorBottom(4:)
+450  FORMAT(T20, "VEHICLE MAKE: [", a2, "] ", a11, T73, "BOTTOM - [",a2"] (", a3, ") "a22)
 
 END SUBROUTINE displayinfo

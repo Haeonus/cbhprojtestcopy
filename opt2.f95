@@ -19,6 +19,13 @@ SUBROUTINE opt2
   CHARACTER :: Selection*2
   INTEGER :: rc  
 
+
+  OPEN(7, FILE="state.db", FORM="FORMATTED", ACCESS="DIRECT", RECL=24)
+  OPEN(8, FILE="county.db", FORM="FORMATTED", ACCESS="DIRECT", RECL=12)
+  OPEN(9, file="vtype.db", form="formatted", access="direct", recl=15)
+  OPEN(10, FILE="vmake.db", FORM="FORMATTED", ACCESS="DIRECT", RECL=11)
+  OPEN(11, FILE="color.db", FORM="FORMATTED", ACCESS="DIRECT", RECL=25)
+
   !Do loop, want to repetitively run different options
   DO
     CALL SYSTEM("clear") !Clear the screen

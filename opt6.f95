@@ -15,14 +15,14 @@ SUBROUTINE opt6
 
 
    IMPLICIT NONE
-   CHARACTER :: SSNIn*12, SSNOut*9, FinalSSN*11, RecordData*105, ZipIn*11, ZipOut*9, Selection*1
+   CHARACTER :: SSNIn*12, SSNOut*9, FinalSSN*11, RecordData*105, ZipIn*11, ZipOut*9, Selection*2
    INTEGER :: ErrorCode, TestSSN, I, RecNumber, NumRecord,  NewRecNumber
    LOGICAL :: InvalidSSN, InvalidZip
    CHARACTER :: SSN*11, Nombre*20, Street*30, City*19, ZipCode*11, StateCode*2, CountyCode*2, VtypeCode*1, &
-                VColorTopCode*2, VmakeCode*2, VColorBottomCode*2, TagNumber*7, State*18, County*12, Vtype*15, &
+                VColorTopCode*2, VmakeCode*2, VColorBottomCode*2, TagNumber*7, State*24, County*12, Vtype*15, &
                 VMake*11, VColorTop*25, VColorBottom*25, NewEntry*105, NumRec2*2, NumRec1*1
 
-   OPEN(7, FILE = "state.db", FORM = "FORMATTED", ACCESS = "DIRECT", RECL = 18)
+   OPEN(7, FILE = "state.db", FORM = "FORMATTED", ACCESS = "DIRECT", RECL = 24)
    OPEN(8, FILE = "county.db", FORM = "FORMATTED", ACCESS = "DIRECT", RECL = 12)
    OPEN(9, FILE = "vtype.db", FORM = "FORMATTED", ACCESS = "DIRECT", RECL = 15)
    OPEN(10, FILE = "vmake.db", FORM = "FORMATTED", ACCESS = "DIRECT", RECL = 11)
@@ -77,7 +77,7 @@ SUBROUTINE opt6
       WRITE (*,300, ADVANCE="NO")"Please enter the number corresponding to your selection: "
 300     FORMAT(//,T10,a)
 
-      READ(*, "(a1)") Selection
+      READ(*, "(a2)") Selection
 
        CALL SYSTEM("clear")
       SELECT CASE (Selection)
@@ -103,6 +103,7 @@ SUBROUTINE opt6
                CYCLE
             END IF
             RecordData(1:9) = SSNOut(1:9)
+            WRITE(12, "(a105)", REC = RecNumber) RecordData
             CALL bubblesort
             CYCLE
 
@@ -112,6 +113,7 @@ SUBROUTINE opt6
             WRITE(*,500, ADVANCE = "NO") "Please enter the new name: "
             WRITE(*, "(//, T25, a, T35)", ADVANCE = "NO") "Name: ";  READ(*, "(a20)") Nombre 
             RecordData(10:29) = Nombre
+            WRITE(12, "(a105)", REC = RecNumber) RecordData
             CYCLE
   
          CASE("3")
@@ -120,6 +122,7 @@ SUBROUTINE opt6
             WRITE(*,500, ADVANCE = "NO") "Please enter the new street: "
             WRITE(*, "(//, T25, a, T35)", ADVANCE = "NO") "Street: ";  READ(*, "(a30)") Street
             RecordData(30:59) = Street
+            WRITE(12, "(a105)", REC = RecNumber) RecordData
             CYCLE
  
          CASE("4")
@@ -128,6 +131,7 @@ SUBROUTINE opt6
             WRITE(*,500, ADVANCE = "NO") "Please enter the new city: "
             WRITE(*, "(//, T25, a, T35)", ADVANCE = "NO") "City: ";  READ(*, "(a19)") City 
             RecordData(60:78) = City
+            WRITE(12, "(a105)", REC = RecNumber) RecordData
             CYCLE
  
          CASE("5")
@@ -135,6 +139,7 @@ SUBROUTINE opt6
             WRITE (*,150) "Modify Record - Change Zip Code"
             CALL getzipcode(ZipOut)
             RecordData(79:87) = ZipOut
+            WRITE(12, "(a105)", REC = RecNumber) RecordData
             CYCLE
 
          CASE("6")
@@ -153,7 +158,7 @@ SUBROUTINE opt6
             WRITE (*,100) "Police Information System"
             WRITE (*,150) "Modify Record - Change Vehicle Type"
             CALL getvtypecode(NumRecord)
-            WRITE(RecordData(92:92), "(i2.2)") NumRecord
+            WRITE(RecordData(92:92), "(i1)") NumRecord
 
          CASE("9")
             WRITE (*,100) "Police Information System"
@@ -164,13 +169,13 @@ SUBROUTINE opt6
          CASE("10")
             WRITE (*,100) "Police Information System"
             WRITE (*,150) "Modify Record - Change Vehicle Color (Top)"
-            CALL getcolorcodes(NumRecord)
+            CALL getcolorcodetop(NumRecord)
             WRITE(RecordData(93:94), "(i2.2)") NumRecord
 
          CASE("11")
             WRITE (*,100) "Police Information System"
             WRITE (*,150) "Modify Record - Change Vehicle Color (Bottom)"
-            CALL getcolorcodes(NumRecord)
+            CALL getcolorcodebottom(NumRecord)
             WRITE(RecordData(97:98), "(i2.2)") NumRecord
 
          CASE("12")
@@ -179,7 +184,7 @@ SUBROUTINE opt6
             CALL gettagnumber(TagNumber)
             RecordData(99:105) = TagNumber
 
-         CASE("Q", "q", "E", "e")
+         CASE("Q", "q", "E", "e", "Qu", "qu", "ex", "Ex")
             EXIT
 
          CASE DEFAULT !Nothing Entered, just cycle.

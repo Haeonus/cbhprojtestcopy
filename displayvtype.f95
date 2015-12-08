@@ -31,15 +31,14 @@ SUBROUTINE displayvtype
     List(i) = " "
   END DO
 
-  !Open File and get length
-  OPEN(7, FILE="vtype.db", FORM="FORMATTED", ACCESS="DIRECT", RECL=15)
-  READ(7, "(I2)",REC = 1) NumRecords  
+  !File open, get length
+  READ(9, "(I2)",REC = 1) NumRecords  
 
   DO I=1, NumRecords
     ColPos = (Column-1)*ColWidth
     
     !Read Data from File
-    READ (7, "(A15)", REC = I+1) Data
+    READ (9, "(A15)", REC = I+1) Data
 
     !Write Data to List Array Varialbe.
     Code = I
@@ -59,7 +58,5 @@ SUBROUTINE displayvtype
   DO I=1, NumRows
     WRITE(*,"(T20,A100)") List(I)
   END DO
-
-  CLOSE(7)
 
 END SUBROUTINE displayvtype

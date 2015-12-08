@@ -110,7 +110,7 @@ SUBROUTINE opt4
       WRITE(12, "(i2)", REC = 1) RecNumber + 1
       CALL bubblesort
       CALL displayinfo(NewEntry) 
-      WRITE(*, 200, ADVANCE = "NO") "Press Enter to Continue: "
+      WRITE(*, 200, ADVANCE = "NO") "Entry was added to database. Press Enter to Continue: "
       READ*, 
    END DO
 

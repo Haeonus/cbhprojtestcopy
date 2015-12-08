@@ -14,7 +14,7 @@ SUBROUTINE getcountycode(CountyCode)
 
    DO
       CALL displaycounty
-      WRITE(*, "(T25, a,T35)", ADVANCE = "NO") "County: ";  READ(*, "(a12)") County
+      WRITE(*, "(/, T25, a,T35)", ADVANCE = "NO") "County: ";  READ(*, "(a12)") County
       CALL searchcounty(County, CountyCode) 
       IF(CountyCode == -1) THEN
          WRITE(*, "(T20, a)", ADVANCE = "NO") "Non-Existant County. Press enter to retry; "; READ*,

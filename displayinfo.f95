@@ -36,7 +36,6 @@ SUBROUTINE displayinfo(Data)
 
    WRITE (*,100) "Police Information System"
 100  FORMAT(T30,a)
-
    WRITE (*,150) "The SSN On Record: ", SSN
 150  FORMAT(T30,a,a11,//)
    WRITE(*, 200) "NAME: ", Nombre 
@@ -53,7 +52,7 @@ SUBROUTINE displayinfo(Data)
 250  FORMAT(T20,a, T45,a ,a2,a, a, /)
    WRITE(*, 200) "TAG NUMBER: ", TagNumber
    WRITE(*, 400) VtypeCode, Vtype,VColorTopCode, VColorTop(1:3), VColorTop(4:)
-400  FORMAT(/, T20, "VEHICLE TYPE: [0",a1, "] ", a15, "    VEHICLE COLOR: TOP    - [",a2"]  (", a3, ") ", a22)
+400  FORMAT(/, T20, "VEHICLE TYPE: [0",a1, "] ", a15, "    VEHICLE COLOR: TOP    - [",a2"] (", a3, ") ", a22)
    WRITE(*,450)  Vmakecode,Vmake,VColorBottomCode, VColorBottom(1:3), VColorBottom(4:)
 450  FORMAT(T20, "VEHICLE MAKE: [", a2, "] ", a11, T73, "BOTTOM - [",a2"] (", a3, ") "a22)
 

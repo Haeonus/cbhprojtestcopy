@@ -14,7 +14,7 @@ SUBROUTINE getcolorcodetop(ColorCode)
 
   DO
       CALL displaycolor
-      WRITE(*, "(T25, a,T35)", ADVANCE = "NO") "Vehicle Color (Top): ";  READ(*, "(a25)") VColor
+      WRITE(*, "(/, T25, a,T35)", ADVANCE = "NO") "Vehicle Color (Top): ";  READ(*, "(a25)") VColor
       CALL searchcolor(VColor, ColorCode) 
       IF(ColorCode == -1) THEN
         WRITE(*, "(T20, a)", ADVANCE = "NO") "Non-Existant Vehicle Color. Press enter to retry; "; READ*,

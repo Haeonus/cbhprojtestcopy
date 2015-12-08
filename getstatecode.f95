@@ -15,7 +15,7 @@ SUBROUTINE getstatecode(StateCode)
  
    DO
       CALL displaystate
-      WRITE(*, "(T25, a,T35)", ADVANCE = "NO") "State: ";  READ(*, "(a24)") State
+      WRITE(*, "(/, T25, a,T35)", ADVANCE = "NO") "State: ";  READ(*, "(a24)") State
       CALL searchstate(State, StateCode) 
       IF(StateCode == -1) THEN
          WRITE(*, "(T20, a)", ADVANCE = "NO") "Non-Existant State. Press enter to retry; "; READ*,

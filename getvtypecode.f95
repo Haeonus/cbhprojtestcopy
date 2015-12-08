@@ -14,7 +14,7 @@ SUBROUTINE getvtypecode(VtypeCode)
 
   DO
       CALL displayvtype
-      WRITE(*, "(T25, a,T35)", ADVANCE = "NO") "Vehicle Type: ";  READ(*, "(a15)") Vtype
+      WRITE(*, "(/, T25, a,T35)", ADVANCE = "NO") "Vehicle Type: ";  READ(*, "(a15)") Vtype
       CALL searchvtype(Vtype, VtypeCode) 
       IF(VtypeCode == -1) THEN
          WRITE(*, "(T20, a)", ADVANCE = "NO") "Non-Existant Vehicle Type. Press enter to retry; "; READ*,

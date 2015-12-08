@@ -14,12 +14,18 @@ SUBROUTINE checkzip(ZipIn, InvalidZip, ErrorCode, ZipOut)
       InvalidZip = .TRUE.
       RETURN
     END IF
+
     IF(ZipIn(6:6) == "-") THEN
        ZipOut(1:5) = ZipIn(1:5)
        ZipOut(6:) = ZipIn(7:)
     ELSE
       ZipOut = ZipIn(1:9)
     END IF
+
+    IF(ZipIn(6:) == "    ") THEN
+       ZipOut(6:) = "0000"
+    END IF 
+
 
     DO I=1, 9
       CharValue = IACHAR(ZipOut(I:I))

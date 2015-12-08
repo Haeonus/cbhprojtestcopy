@@ -15,7 +15,7 @@ SUBROUTINE getvmakecode(VmakeCode)
 
    DO
       CALL displayvmake
-      WRITE(*, "(T25, a,T35)", ADVANCE = "NO") "Vehicle Make: ";  READ(*, "(a11)") Vmake
+      WRITE(*, "(/, T25, a,T35)", ADVANCE = "NO") "Vehicle Make: ";  READ(*, "(a11)") Vmake
       CALL searchvmake(Vmake, VmakeCode) 
       IF(VmakeCode == -1) THEN
          WRITE(*, "(T20, a)", ADVANCE = "NO") "Non-Existant Vehicle Make. Press enter to retry; "; READ*,

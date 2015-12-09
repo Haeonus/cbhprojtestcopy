@@ -9,7 +9,7 @@ OBJ = cbhproj.o opt1.o opt2.o opt3.o opt4.o opt5.o opt6.o opt7.o ldcolor.o ldcou
        displayvmake.o displaycounty.o displaystate.o bubblesort.o checkssn.o findssn.o\
        searchssn.o displayinfo.o checkzip.o searchstate.o searchcounty.o searchvtype.o\
        searchcolor.o searchvmake.o getzipcode.o getstatecode.o getcountycode.o getvtypecode.o\
-       getvmakecode.o getcolorcodetop.o gettagnumber.o getcolorcodebottom.o 
+       getvmakecode.o getcolorcodetop.o gettagnumber.o getcolorcodebottom.o displayrecords.o
 
 cbhproj: $(OBJ)
 	$(CC) $(CFLAGS) -o cbhproj $(OBJ)
@@ -90,6 +90,8 @@ getcolorcodebottom.o: getcolorcodebottom.f95
 	$(CC) $(CFLAGS) -c getcolorcodebottom.f95
 gettagnumber.o: gettagnumber.f95
 	$(CC) $(CFLAGS) -c gettagnumber.f95
+displayrecords.o: displayrecords.f95
+	$(CC) $(CFLAGS) -c displayrecords.f95
 
 clean:
 	rm cbhproj *.o *.db core

@@ -1,4 +1,5 @@
 SUBROUTINE opt5
+
 !----------------------------------------------------------------------------------------
 !  Hayden Martz
 !  29 November 2015
@@ -14,7 +15,7 @@ SUBROUTINE opt5
 !---------------------------------------------------------------------------------------
 
    IMPLICIT NONE
-   CHARACTER :: SSNIn*12, SSNOut*9, DelRecord*105, Confirmation*3
+   CHARACTER :: SSNIn*12, SSNOut*9, DelRecord*105, Confirmation*3, FinRecord*105
    INTEGER :: ErrorCode, I, RecNumber, NumRecord
    LOGICAL :: InvalidSSN
 
@@ -63,15 +64,19 @@ SUBROUTINE opt5
       READ (*, "(a3)") Confirmation
       SELECT CASE(Confirmation)
          CASE("Y", "y", "Ye", "ye", "Yes", "yes")
-            !Replace file with Z's, then decrement record one and sort (will delete largest file)
-            DO I=1, LEN(DelRecord)
-               DelRecord(I:I) = "Z"
-            END DO
-            WRITE(12, "(a105)", REC = RecNumber) DelRecord
+            !Replace file with last record, then decrement record one and sort (will delete largest file)
             READ(12, "(i2)", REC = 1) NumRecord
+            READ(12, "(a105)", REC = NumRecord) FinRecord
+            WRITE(12, "(a105)", REC = RecNumber) FinRecord
             CALL bubblesort
             WRITE(12, "(i2)", REC = 1) NumRecord - 1
-            WRITE(*, *) "Record ", DelRecord(1:3), "-", DelRecord(4:5), "-", DelRecord(6:11), " Deleted."
+            CALL SYSTEM("clear")
+            WRITE (*,100) "Police Information System"
+            WRITE (*,150) "Delete Record"
+            WRITE(*, 300, ADVANCE = "NO") "Record ", DelRecord(1:3), "-", DelRecord(4:5), "-", DelRecord(6:11),&
+                                          " has been deleted. Press Enter to continue."
+300           FORMAT(///, T20, a, a3, a1, a2, a1, a4, a)
+           READ*, 
          CASE DEFAULT
             CYCLE
       END SELECT

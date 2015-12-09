@@ -19,6 +19,7 @@ SUBROUTINE getvtypecode(VtypeCode)
       IF(VtypeCode == -1) THEN
          WRITE(*, "(T20, a)", ADVANCE = "NO") "Non-Existant Vehicle Type. Press enter to retry; "; READ*,
          CYCLE
+PRINT*, Vtypecode; READ*,
       ELSE IF(Vtypecode > 9) THEN
          WRITE(*, "(T20, a)", ADVANCE = "NO") "Vehicle indexes above 9 are not yet supported. Press enter to retry: "
          READ*,

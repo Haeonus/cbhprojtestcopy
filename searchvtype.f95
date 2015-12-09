@@ -20,8 +20,8 @@ SUBROUTINE searchvtype(Data, RecNumber)
   END IF
 
   ReadIn = Data
-  ! Convert to Upper Casei
 
+  ! Convert to Upper Casei
   LengthData = LEN(ReadIn)
   DO I=1, LengthData
     IF(IACHAR(ReadIn(I:I)) >90) THEN
@@ -32,7 +32,7 @@ SUBROUTINE searchvtype(Data, RecNumber)
   DO I=1, Lengthdb
     READ(9, "(a15)", REC = I+1) Test
     IF(Test(1:LEN(ReadIn)) == ReadIn) THEN
-      RecNumber = I + 1
+      RecNumber = I
       RETURN
     END IF
   END DO

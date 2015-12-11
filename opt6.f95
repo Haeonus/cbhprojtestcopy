@@ -13,14 +13,15 @@ SUBROUTINE opt6
 !  Output: Information collected from all the databases.
 !---------------------------------------------------------------------------------------
 
-
+   USE POLICE
    IMPLICIT NONE
-   CHARACTER :: SSNIn*12, SSNOut*9, FinalSSN*11, RecordData*105, ZipIn*11, ZipOut*9, Selection*2
+   CHARACTER :: SSNIn*12, SSNOut*9, FinalSSN*11, RecordData*105, ZipIn*11, ZipOut*9, Selection*2, NewEntry*105, NumRec2*2, NumRec1*1
+
    INTEGER :: ErrorCode, TestSSN, I, RecNumber, NumRecord,  NewRecNumber
    LOGICAL :: InvalidSSN, InvalidZip
-   CHARACTER :: SSN*11, Nombre*20, Street*30, City*19, ZipCode*11, StateCode*2, CountyCode*2, VtypeCode*1, &
-                VColorTopCode*2, VmakeCode*2, VColorBottomCode*2, TagNumber*7, State*24, County*12, Vtype*15, &
-                VMake*11, VColorTop*25, VColorBottom*25, NewEntry*105, NumRec2*2, NumRec1*1
+!   CHARACTER :: SSN*11, Nombre*20, Street*30, City*19, ZipCode*11, StateCode*2, CountyCode*2, VtypeCode*1, &
+!                VColorTopCode*2, VmakeCode*2, VColorBottomCode*2, TagNumber*7, State*24, County*12, Vtype*15, &
+!                VMake*11, VColorTop*25, VColorBottom*25, NewEntry*105, NumRec2*2, NumRec1*1
 
    OPEN(7, FILE = "state.db", FORM = "FORMATTED", ACCESS = "DIRECT", RECL = 24)
    OPEN(8, FILE = "county.db", FORM = "FORMATTED", ACCESS = "DIRECT", RECL = 12)
@@ -31,6 +32,7 @@ SUBROUTINE opt6
 
    NewEntry = "" !Clears New Entry, so that data can be added in. (Blank fills)
    SSNIn = "" ! Blank fills SSNIn for input and testing.
+   Selection = "s"
 
 !Main Do Loop---------------------------------------------------------------------------------------------
    DO
@@ -39,34 +41,36 @@ SUBROUTINE opt6
 100     FORMAT(T30,a)
       WRITE (*,150) "Modify Record"
 150     FORMAT(T35,a,//)
-      WRITE(*,250, ADVANCE = "NO") "Please enter the new Social Security Number of the record you wish to modify or &
-                                   & type 'Q' to exit: "
+      WRITE(*,250, ADVANCE = "NO") "Please enter the new Social Security Number of the record you wish to modify, &
+                                   &or type 'Q' to exit: "
 250     FORMAT(/,T15,A)
 
       IF(SSNIn =="") READ(*, "(A12)", IOSTAT = ErrorCode) SSNIn !Reads in SSN unless a change was made.
+      IF(Selection(1:1) == "S" .OR. Selection(1:1) == "s") THEN
+         SELECT CASE(SSNIn(1:1))
+            CASE("Q", "q", "E", "e")
+               EXIT
+            CASE DEFAULT
+               !Check the value of the entered SSN to make sure it is valid.
+               CALL checkssn(SSNIn, InvalidSSN, ErrorCode, SSNOut)
+               IF(InvalidSSN) THEN
+                  WRITE(*, "(//,T20, A)", ADVANCE = "NO") "Invalid SSN  entered. Press enter to return: "
+                  SSNIn = ""
+                  READ *,
+                  CYCLE
+               END IF
+         END SELECT
 
-      SELECT CASE(SSNIn(1:1))
-         CASE("Q", "q", "E", "e")
-            EXIT
-         CASE DEFAULT
-            !Check the value of the entered SSN to make sure it is valid.
-            CALL checkssn(SSNIn, InvalidSSN, ErrorCode, SSNOut)
-            IF(InvalidSSN) THEN
-               WRITE(*, "(//,T20, A)", ADVANCE = "NO") "Invalid SSN  entered. Press enter to return: "
-               READ *,
-               CYCLE
-            END IF
-      END SELECT
-
-      !Search for SSN number in master.db and return location of the record. 0 means DNE    
-      CALL findssn(SSNOut, RecNumber)
-      IF(RecNumber == 0) THEN
-         WRITE(*, "(//,T20, A)", ADVANCE = "NO") "SSN not registered in database. Press enter to return: "
-         READ *,
-         CYCLE
+         !Search for SSN number in master.db and return location of the record. 0 means DNE    
+         CALL findssn(SSNOut, RecNumber)
+         IF(RecNumber == 0) THEN
+            WRITE(*, "(//,T20, A)", ADVANCE = "NO") "SSN not registered in database. Press enter to return: "
+            SSNIn = ""
+            READ *,
+            CYCLE
+         END IF
+         READ(12, "(a105)", REC = RecNumber) RecordData
       END IF
-
-      READ(12, "(a105)", REC = RecNumber) RecordData
       CALL displayinfo(RecordData)
 
       WRITE (*,"(/, T20, a)") "1 - Modify SSN        5 - Modify Zip Code        9 - Modify Vehicle Make"
@@ -74,37 +78,41 @@ SUBROUTINE opt6
       WRITE (*,200) "2 - Modify Name       6 - Modify State          10 - Modify Vehical Color (Top)"
       WRITE (*,200) "3 - Modify Street     7 - Modify County         11 - Modify Vehical Color (Bottom)"
       WRITE (*,200) "4 - Modify City       8 - Modify Vehicle Type   12 - Modify Tag"
-      WRITE (*,300, ADVANCE="NO")"Please enter the number corresponding to your selection: "
+      WRITE (*,300, ADVANCE="NO")"Please enter the number corresponding to your selection, type 'S' to save or 'Q' to quit: "
 300     FORMAT(//,T10,a)
 
       READ(*, "(a2)") Selection
 
-       CALL SYSTEM("clear")
+      CALL SYSTEM("clear")
       SELECT CASE (Selection)
          CASE("1")
-            WRITE (*,100) "Police Information System"
-            WRITE (*,150) "Modify Record - Change SSN"
-            WRITE(*,500, ADVANCE = "NO") "Please enter the new Social Security Number: "
-500           FORMAT(/,T15,A)
-            READ(*, "(A12)", IOSTAT = ErrorCode) SSNIn
-            !Check the value of the entered SSN to make sure it is valid.
-            CALL checkssn(SSNIn, InvalidSSN, ErrorCode, SSNOut)
-            IF(InvalidSSN) THEN
-               WRITE(*, "(//,T20, A)", ADVANCE = "NO") "Invalid SSN  entered. Press enter to return: "
-               READ *,
-               CYCLE
-            END IF
-          
-            !Search for SSN number in master.db and return location of the record. 0 means DNE    
-            CALL findssn(SSNOut, NewRecNumber)
-            IF(NewRecNumber /= 0) THEN
-               WRITE(*, "(//,T20, A)", ADVANCE = "NO") "SSN already registered in database. Press enter to return: "
-               READ *,
-               CYCLE
-            END IF
+            DO
+               CALL SYSTEM("clear")
+               WRITE (*,100) "Police Information System"
+               WRITE (*,150) "Modify Record - Change SSN"
+               WRITE(*,170, ADVANCE = "NO") "Please enter the new Social Security Number: "
+170              FORMAT(T35,a,//)
+500              FORMAT(/,T15,A)
+               READ(*, "(A12)", IOSTAT = ErrorCode) SSNIn
+               !Check the value of the entered SSN to make sure it is valid.
+               CALL checkssn(SSNIn, InvalidSSN, ErrorCode, SSNOut)
+               IF(InvalidSSN) THEN
+                  WRITE(*, "(//,T20, A)", ADVANCE = "NO") "Invalid SSN  entered. Press enter to return: "
+                  READ *,
+                  CYCLE
+               END IF
+               EXIT
+               !Search for SSN number in master.db and return location of the record. 0 means DNE    
+               CALL findssn(SSNOut, NewRecNumber)
+               IF(NewRecNumber /= 0) THEN
+                  WRITE(*, "(//,T20, A)", ADVANCE = "NO") "SSN already registered in database. Press enter to return: "
+                  READ *,
+                  CYCLE
+               END IF
+            END DO
             RecordData(1:9) = SSNOut(1:9)
-            WRITE(12, "(a105)", REC = RecNumber) RecordData
-            CALL bubblesort
+            !WRITE(12, "(a105)", REC = RecNumber) RecordData
+            !CALL bubblesort
             CYCLE
 
          CASE("2")
@@ -113,7 +121,7 @@ SUBROUTINE opt6
             WRITE(*,500, ADVANCE = "NO") "Please enter the new name: "
             WRITE(*, "(//, T25, a, T35)", ADVANCE = "NO") "Name: ";  READ(*, "(a20)") Nombre 
             RecordData(10:29) = Nombre
-            WRITE(12, "(a105)", REC = RecNumber) RecordData
+            !WRITE(12, "(a105)", REC = RecNumber) RecordData
             CYCLE
   
          CASE("3")
@@ -122,7 +130,7 @@ SUBROUTINE opt6
             WRITE(*,500, ADVANCE = "NO") "Please enter the new street: "
             WRITE(*, "(//, T25, a, T35)", ADVANCE = "NO") "Street: ";  READ(*, "(a30)") Street
             RecordData(30:59) = Street
-            WRITE(12, "(a105)", REC = RecNumber) RecordData
+            !WRITE(12, "(a105)", REC = RecNumber) RecordData
             CYCLE
  
          CASE("4")
@@ -131,7 +139,7 @@ SUBROUTINE opt6
             WRITE(*,500, ADVANCE = "NO") "Please enter the new city: "
             WRITE(*, "(//, T25, a, T35)", ADVANCE = "NO") "City: ";  READ(*, "(a19)") City 
             RecordData(60:78) = City
-            WRITE(12, "(a105)", REC = RecNumber) RecordData
+            !WRITE(12, "(a105)", REC = RecNumber) RecordData
             CYCLE
  
          CASE("5")
@@ -139,7 +147,7 @@ SUBROUTINE opt6
             WRITE (*,150) "Modify Record - Change Zip Code"
             CALL getzipcode(ZipOut)
             RecordData(79:87) = ZipOut
-            WRITE(12, "(a105)", REC = RecNumber) RecordData
+            !WRITE(12, "(a105)", REC = RecNumber) RecordData
             CYCLE
 
          CASE("6")
@@ -187,16 +195,20 @@ SUBROUTINE opt6
          CASE("Q", "q", "E", "e", "Qu", "qu", "ex", "Ex")
             EXIT
 
+         CASE("S", "s", "Sa", "sa")
+            WRITE(12, "(a105)", REC = RecNumber) RecordData
+            IF(Selection == "1") CALL bubblesort
+            WRITE (*, "(///,T35, a)", ADVANCE = "NO") "Record saved, Press enter to return to add record: "
+            READ*,
+            SSNIn = ""; 
+            CYCLE
+
          CASE DEFAULT !Nothing Entered, just cycle.
             WRITE(*, "(/, T35, a)") "Incorrect input. Press enter to continue: "
             READ*, 
             CYCLE
-      END SELECT
 
-      WRITE(12, "(a105)", REC = RecNumber) RecordData
-      IF(Selection == "1") CALL bubblesort
-      CYCLE
-
+      END SELECT      
    END DO
 
    CLOSE(7); CLOSE(8); CLOSE(9); CLOSE(10); CLOSE(11); CLOSE(12)

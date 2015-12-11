@@ -78,6 +78,12 @@ SUBROUTINE opt5
 300           FORMAT(///, T20, a, a3, a1, a2, a1, a4, a)
            READ*, 
          CASE DEFAULT
+            CALL SYSTEM("clear")
+            WRITE (*,100) "Police Information System"
+            WRITE (*,150) "Delete Record"
+            WRITE(*, 300, ADVANCE = "NO") "Record ", DelRecord(1:3), "-", DelRecord(4:5), "-", DelRecord(6:11),&
+                                          " has not been deleted. Press Enter to continue."
+            READ*,
             CYCLE
       END SELECT
    END DO

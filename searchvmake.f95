@@ -32,7 +32,7 @@ SUBROUTINE searchvmake(Data, RecNumber)
   DO I=1, Lengthdb
     READ(10, "(a11)", REC = I+1) Test
     IF(Test(1:LEN(ReadIn)) == ReadIn) THEN
-      RecNumber = I + 1
+      RecNumber = I
       RETURN
     END IF
   END DO

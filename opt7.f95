@@ -20,8 +20,8 @@ SUBROUTINE opt7
 100  FORMAT(T30,a)
    WRITE (*,150) "Listing Master Database"
 150  FORMAT(T31,a,//)
-   WRITE (*, 200) "SSN", "Name", "Street Address (Street, City, State Abbr., Zip)"
-200  FORMAT(T10, a, T23, a, T35, a) 
+   WRITE (*, 200) "SSN", "Name", "Street Address (Street,", " City,", "State Abbr., Zip)"
+200  FORMAT(T10, a, T23, a, T35, a, T77, a, T90, a) 
    WRITE(*, 250) "County", "State (Full)", "Vehicle Type", "Vehicle Make", "Color (Top)", "Color (Bottom)"
 250  FORMAT(T23, a, T43, a, T67, a, T93, a, T112, a, T145,a)
    WRITE(*,"(T30, a, /)") Line 
@@ -36,7 +36,7 @@ SUBROUTINE opt7
          CALL SYSTEM("clear")
          WRITE(*, 100) "Police Information System"
          WRITE(*, 150) "Listing Master Database"
-         WRITE (*, 200) "SSN", "Name", "Street Address (Street, City, State Abbr., Zip)"
+         WRITE (*, 200) "SSN", "Name", "Street Address (Street,", " City,", "State Abbr., Zip)"
          WRITE(*, 250) "County", "State (Full)", "Vehicle Type", "Vehicle Make", "Color (Top)", "Color (Bottom)"
          WRITE(*,"(T30, a, /)") Line
       END IF

@@ -23,7 +23,7 @@ SUBROUTINE searchcolor(Data, RecNumber)
   DO I=1, Lengthdb
     READ(11, "(a25)", REC = I+1) Test
     IF(Test(1:3) == Data(1:3) .OR. Test(4:LEN(Data)) == Data) THEN
-      RecNumber = I + 1
+      RecNumber = I 
       RETURN
     END IF
   END DO

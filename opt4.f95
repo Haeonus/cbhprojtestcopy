@@ -14,14 +14,12 @@ SUBROUTINE opt4
 !  Output: Information collected from all the databases.
 !---------------------------------------------------------------------------------------
 
+USE police
 
    IMPLICIT NONE
-   CHARACTER :: SSNIn*12, SSNOut*9, FinalSSN*11, Data*105, ZipIn*11, ZipOut*9
+   CHARACTER :: SSNIn*12, SSNOut*9, FinalSSN*11, Data*105, ZipIn*11, ZipOut*9, NewEntry*105, NumRec2*2, NumRec1*1
    INTEGER :: ErrorCode, ErrorCode2, TestSSN, I, RecNumber, NumRecord, NumRecord2
    LOGICAL :: InvalidSSN, InvalidZip
-   CHARACTER :: SSN*11, Nombre*20, Street*30, City*19, ZipCode*11, StateCode*2, CountyCode*2, VtypeCode*1, &
-                VColorTopCode*2, VmakeCode*2, VColorBottomCode*2, TagNumber*8, State*24, County*12, Vtype*15, &
-                VMake*11, VColorTop*25, VColorBottom*25, NewEntry*105, NumRec2*2, NumRec1*1
 
    OPEN(7, FILE = "state.db", FORM = "FORMATTED", ACCESS = "DIRECT", RECL = 24)
    OPEN(8, FILE = "county.db", FORM = "FORMATTED", ACCESS = "DIRECT", RECL = 12)

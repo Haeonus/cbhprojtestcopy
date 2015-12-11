@@ -11,9 +11,10 @@ OBJ = cbhproj.o opt1.o opt2.o opt3.o opt4.o opt5.o opt6.o opt7.o ldcolor.o ldcou
        searchcolor.o searchvmake.o getzipcode.o getstatecode.o getcountycode.o getvtypecode.o\
        getvmakecode.o getcolorcodetop.o gettagnumber.o getcolorcodebottom.o displayrecords.o
 
-cbhproj: $(OBJ)
-	$(CC) $(CFLAGS) -o cbhproj $(OBJ)
-
+cbhproj: police.o $(OBJ)
+	$(CC) $(CFLAGS) -o cbhproj police.o $(OBJ)
+police.o: police.f95
+	$(CC) $(CFLAGS) -c police.f95
 cbhproj.o: cbhproj.f95
 	$(CC) $(CFLAGS) -c cbhproj.f95
 opt1.o: opt1.f95

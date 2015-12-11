@@ -195,7 +195,9 @@ SUBROUTINE opt6
             CYCLE
 
          CASE DEFAULT !Nothing Entered, just cycle.
-            WRITE(*, "(/, T35, a)") "Incorrect input. Press enter to continue: "
+            WRITE (*,100) "Police Information System"
+            WRITE (*,150) "Modify Record"
+            WRITE(*, "(///, T30, a)") "Incorrect input. Press enter to continue: "
             READ*, 
             CYCLE
 

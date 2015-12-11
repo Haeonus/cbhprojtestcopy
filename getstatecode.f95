@@ -6,6 +6,9 @@ SUBROUTINE getstatecode(StateCode)
    IMPLICIT NONE
    INTEGER, INTENT(OUT) :: StateCode
    CHARACTER :: State*24
+   INTEGER :: ErrorCode
+
+   State = ""
 
    DO
       CALL SYSTEM("clear")
@@ -17,7 +20,7 @@ SUBROUTINE getstatecode(StateCode)
       WRITE(*, "(/, T25, a,T35)", ADVANCE = "NO") "State: ";  READ(*, "(a24)") State
       CALL searchstate(State, StateCode) 
       IF(StateCode == -1) THEN
-         WRITE(*, "(T20, a)", ADVANCE = "NO") "Non-Existant State. Press enter to retry; "; READ*,
+         WRITE(*, "(T20, a)", ADVANCE = "NO") "Non-Existant State. Press enter to retry: "; READ*,
          CYCLE
       END IF
       EXIT

@@ -35,7 +35,8 @@ SUBROUTINE displayrecords(Data)
 200  FORMAT(T10, a11, 2x, a20, 2x, a30, 2x, a12, 2x, a2, 2x,a10)
    WRITE(*, 300, ADVANCE = "NO")  "[",CountyCode, "] ", County, "[",StateCode, "] ", State(3:24), "[", VtypeCode, "] ", Vtype
 300  FORMAT(T23, a1, a2, a2, a12, 3x, a1, a2, a2, a22, 3x, a1, "0", a1, a2, a15, T100, a1, a2)
-  WRITE(*, 350)  "[", Vmakecode,"] ", Vmake, "[", VColorTopCode, "] ", VColorTop, "[", VColorBottomcode, "] ", VColorBottom
-350  FORMAT(3x, a1, a2, a2, a11, 3x, a1, a2, a2, a25, 3x, a1, a2, a2, a25,/)
+  WRITE(*, 350)  "[", Vmakecode,"] ", Vmake, "[", VColorTopCode, "] ", VColorTop(1:3),VColorTop(4:), "[", VColorBottomcode, "] ",&
+                  VColorBottom(1:3), VColorBottom(4:)
+350  FORMAT(3x, a1, a2, a2, a11, 3x, a1, a2, a2,"(", a3,") ", a22, 3x, a1, a2, a2,"(", a3,") ",a22,/)
 
 END SUBROUTINE displayrecords

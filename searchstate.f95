@@ -6,18 +6,21 @@ SUBROUTINE searchstate(Data, RecNumber)
    CHARACTER, INTENT(IN) :: Data*24
    CHARACTER :: Test*24
    INTEGER, INTENT(OUT) :: RecNumber
-   INTEGER :: I, Lengthdb
+   INTEGER :: I, Lengthdb, ErrorCode
    LOGICAL :: IntegerIn
 
    READ(7, "(I2)", REC = 1) Lengthdb
-   IntegerIn = ((IACHAR(Data(1:1))>=48.AND.IACHAR(Data(1:1))<=57).AND.(IACHAR(Data(2:2))<=57).AND.IACHAR(Data(2:2))>=47&
+   IntegerIn = ((IACHAR(Data(1:1))>=48.AND.IACHAR(Data(1:1))<=57).AND.((IACHAR(Data(2:2))<=57).AND.IACHAR(Data(2:2))>=47)&
                  .OR.IACHAR(Data(2:2)) == 32)
-   IF((IntegerIn.AND. Data(3:) == ""  )) THEN
-      READ(Data, "(I2)") RecNumber
-      IF (RecNumber <1 .OR. RecNumber>Lengthdb) RecNumber = -1
-      RETURN
+   IF(IntegerIn) THEN
+      READ(Data, "(I2)", IOSTAT = ErrorCode) RecNumber
+      IF ((RecNumber <1 .OR. RecNumber>Lengthdb)) THEN
+         RecNumber = -1
+         RETURN
+      ELSE IF(ErrorCode == 0) THEN
+         RETURN
+      END IF
    END IF
-
 
    DO I=1, Lengthdb
       READ(7, "(a24)", REC = I+1) Test

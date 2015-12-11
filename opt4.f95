@@ -17,7 +17,7 @@ SUBROUTINE opt4
 USE police
 
    IMPLICIT NONE
-   CHARACTER :: SSNIn*12, SSNOut*9, FinalSSN*11, Data*105, ZipIn*11, ZipOut*9, NewEntry*105, NumRec2*2, NumRec1*1
+   CHARACTER :: SSNIn*12, SSNOut*9, FinalSSN*11, Data*105, ZipIn*11, ZipOut*9, NewEntry*105, NumRec2*2, NumRec1*1, check*2
    INTEGER :: ErrorCode, ErrorCode2, TestSSN, I, RecNumber, NumRecord, NumRecord2
    LOGICAL :: InvalidSSN, InvalidZip
 
@@ -102,13 +102,21 @@ USE police
       CALL gettagnumber(TagNumber)
       NewEntry(99:105) = TagNumber
 
-      !After reading and assembling all information,  write it to end of master.db, Increment length then bubblesort.
-      READ(12, "(I2)", REC = 1) RecNumber
-      WRITE(12, "(a105)", REC = RecNumber + 2) NewEntry
-      WRITE(12, "(i2)", REC = 1) RecNumber + 1
-      CALL bubblesort
-      CALL displayinfo(NewEntry) 
-      WRITE(*, 200, ADVANCE = "NO") "Entry was added to database. Press Enter to Continue: "
+      !After reading and assembling, ask if should save, write it to end of master.db, Increment length then bubblesort.
+      CALL displayinfo(NewEntry)
+      WRITE(*, "(//, T20, a)", ADVANCE = "NO") "Would you like to add the file? (Y/N) "
+      READ (*, "(a2)"), check
+      SELECT CASE(check)
+         CASE("Y", "y", "Ye", "ye")
+            READ(12, "(I2)", REC = 1) RecNumber
+            WRITE(12, "(a105)", REC = RecNumber + 2) NewEntry
+            WRITE(12, "(i2)", REC = 1) RecNumber + 1
+            CALL bubblesort
+            WRITE(*, 200, ADVANCE = "NO") "Entry was added to database. Press enter to continue: "
+        CASE DEFAULT
+            WRITE(*, 200, ADVANCE = "NO") "Entry was not added to database. Press Enter to Continue: "
+      END SELECT
+
       READ*, 
    END DO
 

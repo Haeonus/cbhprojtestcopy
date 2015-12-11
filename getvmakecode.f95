@@ -6,15 +6,14 @@ SUBROUTINE getvmakecode(VmakeCode)
    INTEGER, INTENT (OUT) :: VmakeCode
    CHARACTER :: Vmake*11
 
-   CALL SYSTEM("clear")
-   WRITE (*,100) "Police Information System"
-100  FORMAT(T30,a)
-   WRITE (*,150) "Add Record - Vehicle Make"
-150  FORMAT(T30,a,//)
-
 
    DO
-      CALL displayvmake
+      CALL SYSTEM("clear")
+      WRITE (*,100) "Police Information System"
+100     FORMAT(T30,a)
+      WRITE (*,150) "Record - Vehicle Make"
+150     FORMAT(T30,a,//)
+     CALL displayvmake
       WRITE(*, "(/, T25, a,T35)", ADVANCE = "NO") "Vehicle Make: ";  READ(*, "(a11)") Vmake
       CALL searchvmake(Vmake, VmakeCode) 
       IF(VmakeCode == -1) THEN

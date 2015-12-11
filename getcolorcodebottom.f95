@@ -6,13 +6,12 @@ SUBROUTINE getcolorcodebottom(ColorCode)
    INTEGER, INTENT(OUT) :: ColorCode
    CHARACTER :: VColor*25
 
-   CALL SYSTEM("clear")
-   WRITE (*,100) "Police Information System"
-100  FORMAT(T30,a)
-   WRITE (*,150) "Add Record - Vehicle Color (Bottom)"
-150  FORMAT(T30,a,//)
-
-  DO
+   DO
+      CALL SYSTEM("clear")
+      WRITE (*,100) "Police Information System"
+100     FORMAT(T30,a)
+      WRITE (*,150) "Record - Vehicle Color (Bottom)"
+150     FORMAT(T30,a,//)
       CALL displaycolor
       WRITE(*, "(/, T25, a,T35)", ADVANCE = "NO") "Vehicle Color (Bottom): ";  READ(*, "(a25)") VColor
       CALL searchcolor(VColor, ColorCode) 

@@ -6,13 +6,12 @@ SUBROUTINE getvtypecode(VtypeCode)
    INTEGER, INTENT(OUT) :: VtypeCode
    CHARACTER :: Vtype*15
 
-   CALL SYSTEM("clear")
-   WRITE (*,100) "Police Information System"
-100  FORMAT(T30,a)
-   WRITE (*,150) "Add Record - Vehicle Type"
-150  FORMAT(T30,a,//)
-
   DO
+     CALL SYSTEM("clear")
+     WRITE (*,100) "Police Information System"
+100    FORMAT(T30,a)
+     WRITE (*,150) "Record - Vehicle Type"
+150    FORMAT(T30,a,//)
       CALL displayvtype
       WRITE(*, "(/, T25, a,T35)", ADVANCE = "NO") "Vehicle Type: ";  READ(*, "(a15)") Vtype
       CALL searchvtype(Vtype, VtypeCode) 

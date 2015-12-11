@@ -5,9 +5,6 @@ SUBROUTINE displayrecords(Data)
    USE POLICE
    IMPLICIT NONE
    CHARACTER, INTENT(IN) :: Data*105
-!   CHARACTER :: SSN*11, Nombre*20, Street*30, City*19, ZipCode*10, StateCode*2, CountyCode*2, VtypeCode*1, &
-!                VColorTopCode*2, VmakeCode*2, VColorBottomCode*2, TagNumber*7, State*18, County*12, Vtype*15, &
-!                VMake*11, VColorTop*25, VColorBottom*25
    INTEGER :: SC, CC, VtC, VmC, VTCC, VBCC
 
 
@@ -28,7 +25,7 @@ SUBROUTINE displayrecords(Data)
    VTCC = VTCC+1; VBCC = VBCC+1; SC = SC + 1; CC = CC + 2; VtC = VtC + 1; VmC = VmC + 1
 
    !Get the content using the codes from the various database files.
-   READ(7, "(A22)", REC = SC) State
+   READ(7, "(A24)", REC = SC) State
    READ(8, "(A12)", REC = CC) County
    READ(9, "(A15)", REC = VtC) Vtype
    READ(10, "(A11)", REC = VmC) Vmake
@@ -36,8 +33,8 @@ SUBROUTINE displayrecords(Data)
 
    WRITE(*, 200)  SSN, Nombre, Street, City, State(1:2), ZipCode 
 200  FORMAT(T10, a11, 2x, a20, 2x, a30, 2x, a12, 2x, a2, 2x,a10)
-   WRITE(*, 300, ADVANCE = "NO")  "[",CountyCode, "] ", County, "[",StateCode, "] ", State(3:), "[", VtypeCode, "] ", Vtype
-300  FORMAT(T23, a1, a2, a2, a12, 3x, a1, a2, a2, a16, 3x, a1, "0", a1, a2, a15, 3x, a1, a2)
+   WRITE(*, 300, ADVANCE = "NO")  "[",CountyCode, "] ", County, "[",StateCode, "] ", State(3:24), "[", VtypeCode, "] ", Vtype
+300  FORMAT(T23, a1, a2, a2, a12, 3x, a1, a2, a2, a22, 3x, a1, "0", a1, a2, a15, T100, a1, a2)
   WRITE(*, 350)  "[", Vmakecode,"] ", Vmake, "[", VColorTopCode, "] ", VColorTop, "[", VColorBottomcode, "] ", VColorBottom
 350  FORMAT(3x, a1, a2, a2, a11, 3x, a1, a2, a2, a25, 3x, a1, a2, a2, a25,/)
 

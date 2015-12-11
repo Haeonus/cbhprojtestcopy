@@ -19,9 +19,6 @@ SUBROUTINE opt6
 
    INTEGER :: ErrorCode, TestSSN, I, RecNumber, NumRecord,  NewRecNumber
    LOGICAL :: InvalidSSN, InvalidZip
-!   CHARACTER :: SSN*11, Nombre*20, Street*30, City*19, ZipCode*11, StateCode*2, CountyCode*2, VtypeCode*1, &
-!                VColorTopCode*2, VmakeCode*2, VColorBottomCode*2, TagNumber*7, State*24, County*12, Vtype*15, &
-!                VMake*11, VColorTop*25, VColorBottom*25, NewEntry*105, NumRec2*2, NumRec1*1
 
    OPEN(7, FILE = "state.db", FORM = "FORMATTED", ACCESS = "DIRECT", RECL = 24)
    OPEN(8, FILE = "county.db", FORM = "FORMATTED", ACCESS = "DIRECT", RECL = 12)
@@ -40,7 +37,7 @@ SUBROUTINE opt6
       WRITE (*,100) "Police Information System"
 100     FORMAT(T30,a)
       WRITE (*,150) "Modify Record"
-150     FORMAT(T35,a,//)
+150     FORMAT(T30,a,//)
       WRITE(*,250, ADVANCE = "NO") "Please enter the new Social Security Number of the record you wish to modify, &
                                    &or type 'Q' to exit: "
 250     FORMAT(/,T15,A)
@@ -91,7 +88,7 @@ SUBROUTINE opt6
                WRITE (*,100) "Police Information System"
                WRITE (*,150) "Modify Record - Change SSN"
                WRITE(*,170, ADVANCE = "NO") "Please enter the new Social Security Number: "
-170              FORMAT(T35,a,//)
+170              FORMAT(T35,a)
 500              FORMAT(/,T15,A)
                READ(*, "(A12)", IOSTAT = ErrorCode) SSNIn
                !Check the value of the entered SSN to make sure it is valid.
@@ -111,8 +108,6 @@ SUBROUTINE opt6
                END IF
             END DO
             RecordData(1:9) = SSNOut(1:9)
-            !WRITE(12, "(a105)", REC = RecNumber) RecordData
-            !CALL bubblesort
             CYCLE
 
          CASE("2")
@@ -121,7 +116,6 @@ SUBROUTINE opt6
             WRITE(*,500, ADVANCE = "NO") "Please enter the new name: "
             WRITE(*, "(//, T25, a, T35)", ADVANCE = "NO") "Name: ";  READ(*, "(a20)") Nombre 
             RecordData(10:29) = Nombre
-            !WRITE(12, "(a105)", REC = RecNumber) RecordData
             CYCLE
   
          CASE("3")
@@ -130,7 +124,6 @@ SUBROUTINE opt6
             WRITE(*,500, ADVANCE = "NO") "Please enter the new street: "
             WRITE(*, "(//, T25, a, T35)", ADVANCE = "NO") "Street: ";  READ(*, "(a30)") Street
             RecordData(30:59) = Street
-            !WRITE(12, "(a105)", REC = RecNumber) RecordData
             CYCLE
  
          CASE("4")
@@ -139,7 +132,6 @@ SUBROUTINE opt6
             WRITE(*,500, ADVANCE = "NO") "Please enter the new city: "
             WRITE(*, "(//, T25, a, T35)", ADVANCE = "NO") "City: ";  READ(*, "(a19)") City 
             RecordData(60:78) = City
-            !WRITE(12, "(a105)", REC = RecNumber) RecordData
             CYCLE
  
          CASE("5")
@@ -147,7 +139,6 @@ SUBROUTINE opt6
             WRITE (*,150) "Modify Record - Change Zip Code"
             CALL getzipcode(ZipOut)
             RecordData(79:87) = ZipOut
-            !WRITE(12, "(a105)", REC = RecNumber) RecordData
             CYCLE
 
          CASE("6")

@@ -31,8 +31,8 @@ SUBROUTINE displayrecords(Data)
    READ(10, "(A11)", REC = VmC) Vmake
    READ(11, "(A25)", REC = VTCC) VColorTop;   READ(11, "(A25)", REC = VBCC) VColorBottom 
 
-   WRITE(*, 200)  SSN, Nombre, Street, City, State(1:2), ZipCode 
-200  FORMAT(T10, a11, 2x, a20, 2x, a30, 2x, a12, 2x, a2, 2x,a10)
+   WRITE(*, 200)  SSN, Nombre, Street, City, State(1:2), ZipCode, TagNumber 
+200  FORMAT(T10, a11, 2x, a20, 2x, a30, 2x, a12, 2x, a2, 2x,a10, T125, A7)
    WRITE(*, 300, ADVANCE = "NO")  "[",CountyCode, "] ", County, "[",StateCode, "] ", State(3:24), "[", VtypeCode, "] ", Vtype
 300  FORMAT(T23, a1, a2, a2, a12, 3x, a1, a2, a2, a22, 3x, a1, "0", a1, a2, a15, T100, a1, a2)
   WRITE(*, 350)  "[", Vmakecode,"] ", Vmake, "[", VColorTopCode, "] ", VColorTop(1:3),VColorTop(4:), "[", VColorBottomcode, "] ",&

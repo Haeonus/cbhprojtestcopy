@@ -1,0 +1,5 @@
+#!/bin/bash
+set -e
+f95 $1.f95
+mv a.out $1.run
+./$1.run

@@ -1,0 +1,79 @@
+GFORTRAN module version '10' created from police.f95
+MD5:732688686c70294947d5f4cfe49ab12a -- If you edit this, you'll get what you deserve.
+
+(() () () () () () () () () () () () () () () () () () () () () () () ()
+() () ())
+
+()
+
+()
+
+()
+
+()
+
+()
+
+(2 'city' 'police' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+EXPLICIT-SAVE 0 0) (CHARACTER 1 0 0 0 CHARACTER ((CONSTANT (INTEGER 4 0
+0 0 INTEGER ()) 0 '19'))) 0 0 () () 0 () () () 0 0)
+3 'county' 'police' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+EXPLICIT-SAVE 0 0) (CHARACTER 1 0 0 0 CHARACTER ((CONSTANT (INTEGER 4 0
+0 0 INTEGER ()) 0 '12'))) 0 0 () () 0 () () () 0 0)
+4 'countycode' 'police' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN EXPLICIT-SAVE 0 0) (CHARACTER 1 0 0 0 CHARACTER ((CONSTANT (
+INTEGER 4 0 0 0 INTEGER ()) 0 '2'))) 0 0 () () 0 () () () 0 0)
+5 'nombre' 'police' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+EXPLICIT-SAVE 0 0) (CHARACTER 1 0 0 0 CHARACTER ((CONSTANT (INTEGER 4 0
+0 0 INTEGER ()) 0 '20'))) 0 0 () () 0 () () () 0 0)
+6 'police' 'police' '' 1 ((MODULE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+UNKNOWN 0 0) (UNKNOWN 0 0 0 0 UNKNOWN ()) 0 0 () () 0 () () () 0 0)
+7 'ssn' 'police' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+EXPLICIT-SAVE 0 0) (CHARACTER 1 0 0 0 CHARACTER ((CONSTANT (INTEGER 4 0
+0 0 INTEGER ()) 0 '11'))) 0 0 () () 0 () () () 0 0)
+8 'state' 'police' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+EXPLICIT-SAVE 0 0) (CHARACTER 1 0 0 0 CHARACTER ((CONSTANT (INTEGER 4 0
+0 0 INTEGER ()) 0 '24'))) 0 0 () () 0 () () () 0 0)
+9 'statecode' 'police' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN EXPLICIT-SAVE 0 0) (CHARACTER 1 0 0 0 CHARACTER ((CONSTANT (
+INTEGER 4 0 0 0 INTEGER ()) 0 '2'))) 0 0 () () 0 () () () 0 0)
+10 'street' 'police' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+EXPLICIT-SAVE 0 0) (CHARACTER 1 0 0 0 CHARACTER ((CONSTANT (INTEGER 4 0
+0 0 INTEGER ()) 0 '30'))) 0 0 () () 0 () () () 0 0)
+11 'tagnumber' 'police' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN EXPLICIT-SAVE 0 0) (CHARACTER 1 0 0 0 CHARACTER ((CONSTANT (
+INTEGER 4 0 0 0 INTEGER ()) 0 '7'))) 0 0 () () 0 () () () 0 0)
+12 'vcolorbottom' 'police' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN EXPLICIT-SAVE 0 0) (CHARACTER 1 0 0 0 CHARACTER ((CONSTANT (
+INTEGER 4 0 0 0 INTEGER ()) 0 '25'))) 0 0 () () 0 () () () 0 0)
+13 'vcolorbottomcode' 'police' '' 1 ((VARIABLE UNKNOWN-INTENT
+UNKNOWN-PROC UNKNOWN EXPLICIT-SAVE 0 0) (CHARACTER 1 0 0 0 CHARACTER ((
+CONSTANT (INTEGER 4 0 0 0 INTEGER ()) 0 '2'))) 0 0 () () 0 () () () 0 0)
+14 'vcolortop' 'police' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN EXPLICIT-SAVE 0 0) (CHARACTER 1 0 0 0 CHARACTER ((CONSTANT (
+INTEGER 4 0 0 0 INTEGER ()) 0 '25'))) 0 0 () () 0 () () () 0 0)
+15 'vcolortopcode' 'police' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN EXPLICIT-SAVE 0 0) (CHARACTER 1 0 0 0 CHARACTER ((CONSTANT (
+INTEGER 4 0 0 0 INTEGER ()) 0 '2'))) 0 0 () () 0 () () () 0 0)
+16 'vmake' 'police' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+EXPLICIT-SAVE 0 0) (CHARACTER 1 0 0 0 CHARACTER ((CONSTANT (INTEGER 4 0
+0 0 INTEGER ()) 0 '11'))) 0 0 () () 0 () () () 0 0)
+17 'vmakecode' 'police' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN EXPLICIT-SAVE 0 0) (CHARACTER 1 0 0 0 CHARACTER ((CONSTANT (
+INTEGER 4 0 0 0 INTEGER ()) 0 '2'))) 0 0 () () 0 () () () 0 0)
+18 'vtype' 'police' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC UNKNOWN
+EXPLICIT-SAVE 0 0) (CHARACTER 1 0 0 0 CHARACTER ((CONSTANT (INTEGER 4 0
+0 0 INTEGER ()) 0 '15'))) 0 0 () () 0 () () () 0 0)
+19 'vtypecode' 'police' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN EXPLICIT-SAVE 0 0) (CHARACTER 1 0 0 0 CHARACTER ((CONSTANT (
+INTEGER 4 0 0 0 INTEGER ()) 0 '1'))) 0 0 () () 0 () () () 0 0)
+20 'zipcode' 'police' '' 1 ((VARIABLE UNKNOWN-INTENT UNKNOWN-PROC
+UNKNOWN EXPLICIT-SAVE 0 0) (CHARACTER 1 0 0 0 CHARACTER ((CONSTANT (
+INTEGER 4 0 0 0 INTEGER ()) 0 '10'))) 0 0 () () 0 () () () 0 0)
+)
+
+('city' 0 2 'county' 0 3 'countycode' 0 4 'nombre' 0 5 'police' 0 6 'ssn'
+0 7 'state' 0 8 'statecode' 0 9 'street' 0 10 'tagnumber' 0 11
+'vcolorbottom' 0 12 'vcolorbottomcode' 0 13 'vcolortop' 0 14
+'vcolortopcode' 0 15 'vmake' 0 16 'vmakecode' 0 17 'vtype' 0 18
+'vtypecode' 0 19 'zipcode' 0 20)

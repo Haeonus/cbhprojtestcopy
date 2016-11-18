@@ -1,0 +1,3 @@
+#!/bin/bash
+set -e
+f95 -o cbhproj.run cbhproj.f95 opt1.f95 opt2.f95 opt3.f95 opt4.f95 opt5.f95 opt6.f95 opt7.f95 ldcolor.f95 ldcounty.f95 ldpolice1.f95 ldpolice2.f95 ldstate.f95 ldvmake.f95 ldvtype.f95 displaycolor.f95 displayvtype.f95 displayvmake.f95 displaycounty.f95 displaystate.f95 ldmaster.f95 bubblesort.f95

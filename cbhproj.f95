@@ -44,7 +44,7 @@ PROGRAM cbhproj
       !Use case to run subroutine (or action) corresponding to selection
       SELECT CASE (Selection)
          CASE('1')
-            CALL opt1
+!            CALL opt1
          CASE('2')
             CALL opt2
          CASE('3')

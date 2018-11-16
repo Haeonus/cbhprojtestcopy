@@ -2,8 +2,8 @@
 # Makefile
 #
 
-CC = f95
-CFLAGS =
+CC = f95 
+CFLAGS = -fPIC 
 OBJ = cbhproj.o opt1.o opt2.o opt3.o opt4.o opt5.o opt6.o opt7.o ldcolor.o ldcounty.o \
        ldmaster.o ldstate.o ldvmake.o ldvtype.o displaycolor.o displayvtype.o \
        displayvmake.o displaycounty.o displaystate.o bubblesort.o checkssn.o findssn.o\
